@@ -61,6 +61,25 @@ p {
   text-shadow: 0 0 6px #ff4500;
 }
 
+.beat {
+  margin: 2rem auto;
+  max-width: 600px;
+  background-color: rgba(255, 69, 0, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ff4500;
+}
+
+.beat h3 {
+  margin-bottom: 0.5rem;
+  color: #ff4500;
+}
+
+.beat audio {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
 .btn {
   background-color: #ff4500;
   color: #fff;
@@ -68,7 +87,7 @@ p {
   padding: 0.75rem 1.5rem;
   font-size: 1.1rem;
   cursor: pointer;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   border-radius: 8px;
   box-shadow: 0 0 10px #ff4500;
   text-decoration: none;
@@ -80,6 +99,17 @@ p {
   background-color: #e03e00;
   transform: scale(1.05);
   box-shadow: 0 0 20px #e03e00;
+}
+
+.btn.buy {
+  background-color: #222;
+  color: #ff4500;
+  border: 2px solid #ff4500;
+}
+
+.btn.buy:hover {
+  background-color: #ff4500;
+  color: #fff;
 }
 
 a {
@@ -101,9 +131,7 @@ footer {
 }
 
 .note {
-  margin-top: 1rem;
-  color: #ff4500;
-  font-style: italic;
-  font-size: 1rem;
-  transition: opacity 0.3s ease;
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-top: 0.5rem;
 }
