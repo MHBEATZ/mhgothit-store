@@ -10,7 +10,6 @@
 <body>
   <video autoplay muted loop playsinline id="bg-video">
     <source src="background.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
   </video>
 
   <header class="hero">
@@ -21,19 +20,43 @@
 
   <main>
     <section id="beats" class="section">
-      <h2>🔥 Exclusive Beats for Sale</h2>
-      <p>Preview and purchase exclusive MH BEATS instrumentals.</p>
+      <h2>🔥 Beats for Sale</h2>
+      <p>Browse our exclusive collection of hard-hitting, atmospheric beats. Perfect for any genre.</p>
 
-      <div class="beat">
-        <h3>🔥 Inferno Southside (Exclusive)</h3>
-        <audio controls>
-          <source src="inferno-southside-preview.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-        <p>Price: <strong>$100 USD</strong></p>
-        <a class="btn buy" href="https://paypal.me/mhboss2/100" target="_blank">Buy Now</a>
-        <p class="note">After payment, send proof to <a href="mailto:mhgothit@gmail.com">mhgothit@gmail.com</a> to receive the full beat.</p>
+      <div class="beat-grid">
+        <!-- Dark Hustle Beat -->
+        <div class="beat-card">
+          <h3>Dark Hustle</h3>
+          <!-- Full MP3 stored locally for now (can replace with streaming link later) -->
+          <audio controls controlsList="nodownload noplaybackrate">
+            <source src="SOUTHSIDE METRO.mp3" type="audio/mpeg">
+          </audio>
+          <p class="price">Exclusive: $100</p>
+          <a href="https://paypal.me/mhboss2" target="_blank" class="btn">Buy Exclusive</a>
+        </div>
+
+        <!-- Placeholder Beat -->
+        <div class="beat-card">
+          <h3>Untitled Beat</h3>
+          <audio controls disabled>
+            <source src="" type="audio/mpeg">
+          </audio>
+          <p class="price">Exclusive: TBD</p>
+          <a href="#" class="btn" style="pointer-events:none;opacity:0.6;">Buy Exclusive</a>
+        </div>
       </div>
+    </section>
+
+    <section id="services" class="section">
+      <h2>🎧 Mix & Master Services</h2>
+      <p>Email: <a href="mailto:mhgothit@gmail.com">mhgothit@gmail.com</a></p>
+      <button class="btn">Book Now</button>
+    </section>
+
+    <section id="artwork" class="section">
+      <h2>🖼️ Custom Artwork & Animated Videos</h2>
+      <p>Email: <a href="mailto:mhgothit@gmail.com">mhgothit@gmail.com</a></p>
+      <button class="btn">Request Custom Art</button>
     </section>
   </main>
 
