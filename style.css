@@ -1,0 +1,94 @@
+body {
+    margin:0;
+    background:#070707;
+    color:white;
+    font-family:'Montserrat', sans-serif;
+    overflow-x:hidden;
+}
+
+.hero {
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background: radial-gradient(circle at center, #111 0%, #070707 70%);
+}
+
+.logo {
+    width:300px;
+    margin-bottom:20px;
+    filter: drop-shadow(0 0 25px #ff1a1a);
+}
+
+.hero h1 {
+    font-family:'Orbitron', sans-serif;
+    font-size:3rem;
+    letter-spacing:6px;
+    color:#ff1a1a;
+}
+
+.btn {
+    margin-top:30px;
+    padding:15px 40px;
+    border:2px solid #ff1a1a;
+    color:white;
+    text-decoration:none;
+    letter-spacing:3px;
+    transition:0.3s;
+}
+
+.btn:hover {
+    background:#ff1a1a;
+    box-shadow:0 0 20px #ff1a1a;
+}
+
+.section {
+    padding:100px 10%;
+}
+
+.section h2 {
+    font-family:'Orbitron', sans-serif;
+    letter-spacing:4px;
+    margin-bottom:50px;
+}
+
+.beat-card {
+    background:#111;
+    padding:30px;
+    margin-bottom:30px;
+    border:1px solid #222;
+    transition:0.3s;
+}
+
+.beat-card:hover {
+    border:1px solid #ff1a1a;
+    box-shadow:0 0 20px rgba(255,26,26,0.6);
+    transform:translateY(-5px);
+}
+
+.paypal-btn {
+    background:#111;
+    border:1px solid #ff1a1a;
+    color:white;
+    padding:10px 20px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.paypal-btn:hover {
+    background:#ff1a1a;
+    box-shadow:0 0 15px #ff1a1a;
+}
+
+audio {
+    width:100%;
+    margin:15px 0;
+}
+
+@media(max-width:768px){
+.logo { width:200px; }
+.hero h1 { font-size:2rem; }
+.section { padding:60px 5%; }
+}
