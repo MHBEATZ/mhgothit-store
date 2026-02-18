@@ -38,5 +38,5 @@ function checkout(){
     }
 
     // Replace YOURUSERNAME with your PayPal.Me username
-    window.location.href = `https://www.paypal.com/paypalme/YOURUSERNAME/${total}`;
+    window.location.href = `https://www.paypal.com/paypalme/mhboss2/${total}`;
 }
