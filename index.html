@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MH BEATS OFFICIAL BEATS STORE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="intro">
+    <h1 class="logo">MH BEATS OFFICIAL</h1>
+</div>
+
+<header class="hero">
+    <h1 class="hero-title">MH BEATS OFFICIAL BEATS STORE</h1>
+    <p class="hero-sub">Dark. Cinematic. Industry Ready.</p>
+</header>
+
+<section class="beats" id="beats"></section>
+
+<div class="cart-bar">
+    <div id="cart-info">Cart: 0 items | Total: $0.00</div>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL">
+        <input type="hidden" name="item_name" value="MH Beats Purchase">
+        <input type="hidden" name="amount" id="paypal-amount" value="0">
+        <input type="hidden" name="currency_code" value="USD">
+        <button type="submit">Checkout with PayPal</button>
+    </form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
