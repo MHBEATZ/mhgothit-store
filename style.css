@@ -1,0 +1,72 @@
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    font-family:'Montserrat',sans-serif;
+    background:#0f0f0f;
+    color:white;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    padding:20px 50px;
+    background:#111;
+}
+
+.logo span{color:#ff2a2a}
+
+nav a{
+    margin-left:20px;
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.hero{
+    padding:100px 20px;
+    text-align:center;
+    background:linear-gradient(to bottom,#111,#000);
+}
+
+.section{
+    padding:80px 50px;
+    text-align:center;
+}
+
+.alt{background:#141414}
+
+.grid{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    margin-top:40px;
+    flex-wrap:wrap;
+}
+
+.card{
+    background:#1a1a1a;
+    padding:30px;
+    width:320px;
+    border-radius:10px;
+}
+
+button{
+    margin-top:15px;
+    padding:10px 20px;
+    background:#ff2a2a;
+    border:none;
+    color:white;
+    border-radius:6px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+#cart-items{
+    margin:20px 0;
+}
+
+footer{
+    padding:20px;
+    text-align:center;
+    background:#000;
+}
