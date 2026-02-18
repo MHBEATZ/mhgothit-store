@@ -1,0 +1,61 @@
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Arial}
+body{background:#0f1015;color:#eee}
+
+/* TRANSITION */
+.page-transition{
+position:fixed;inset:0;background:#0f1015;
+z-index:999;animation:fadeOut 1s forwards
+}
+@keyframes fadeOut{to{opacity:0;pointer-events:none}}
+
+/* NAV */
+.nav{display:flex;justify-content:space-between;
+padding:20px 8%;position:sticky;top:0;
+background:rgba(15,16,21,.8);backdrop-filter:blur(12px)}
+.logo span{color:#ff5a5a}
+.cart-btn{cursor:pointer}
+
+/* HERO */
+.hero{padding:120px 8%;text-align:center}
+.hero h1{font-size:3rem}
+.hero p{color:#aaa;margin-top:10px}
+
+/* STORE */
+.store{padding:60px 8%}
+.beat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}
+
+.beat-card{
+background:#181a22;border-radius:20px;padding:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.4)
+}
+.waveform{width:100%;height:60px;background:#111;border-radius:10px}
+.beat-card h3{margin:10px 0}
+button{margin:5px;padding:8px 14px;border:none;border-radius:20px;
+background:#ff5a5a;color:#000;cursor:pointer}
+
+/* CART */
+.cart{
+position:fixed;right:-400px;top:0;height:100%;
+width:320px;background:#181a22;padding:20px;
+transition:.4s;z-index:1000
+}
+.cart.open{right:0}
+.cart a{
+display:block;margin-top:20px;padding:12px;
+background:#ff5a5a;text-align:center;border-radius:25px;
+text-decoration:none;color:#000;font-weight:600}
+
+/* MODAL */
+.modal{
+position:fixed;inset:0;background:rgba(0,0,0,.7);
+display:none;align-items:center;justify-content:center
+}
+.modal-content{
+background:#181a22;padding:30px;border-radius:20px;text-align:center
+}
+
+/* SUGGEST */
+.suggest{padding:80px 8%;text-align:center;color:#aaa}
+
+/* FOOTER */
+footer{text-align:center;padding:40px;color:#666}
