@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MH BEATS OFFICIAL BEATS STORE</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="smoke"></canvas>
+
+<div id="intro">
+    <img src="logo.png" class="logo-img">
+    <h1>MH BEATS OFFICIAL</h1>
+</div>
+
+<header class="hero">
+    <h1>MH BEATS OFFICIAL BEATS STORE</h1>
+    <p>DARK • CINEMATIC • INDUSTRY READY</p>
+</header>
+
+<section id="beats" class="beats"></section>
+
+<section class="contact">
+    <h2>CONTACT MH</h2>
+    <p>Serious artists only.</p>
+    <div class="contact-box">
+        <p>Email: your@email.com</p>
+        <p>Instagram: @yourhandle</p>
+        <p>Custom Beats Available</p>
+    </div>
+</section>
+
+<div class="cart-bar">
+    <div id="cart-info">Cart: 0 | $0.00</div>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL">
+        <input type="hidden" name="item_name" value="MH Beats Purchase">
+        <input type="hidden" name="amount" id="paypal-amount" value="0">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="return" value="download.html">
+        <button type="submit">CHECKOUT</button>
+    </form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
