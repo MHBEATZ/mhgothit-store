@@ -1,0 +1,58 @@
+body {
+  background: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  background: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.cursor-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,0,0,.25), transparent 60%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.glitch {
+  font-size: 5rem;
+  color: red;
+  text-shadow: 0 0 20px red;
+}
+
+.store {
+  padding: 80px 8%;
+}
+
+.beat-card {
+  border: 1px solid rgba(255,0,0,.3);
+  padding: 25px;
+  border-radius: 18px;
+}
+
+.wave {
+  height: 60px;
+  background: repeating-linear-gradient(90deg, red 0 2px, transparent 2px 6px);
+  animation: waveMove 2s linear infinite;
+}
+
+@keyframes waveMove {
+  from { background-position-x: 0 }
+  to { background-position-x: 200px }
+}
