@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MH Beats | Premium Beats & Mixing</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0b0f;--card:#15151d;--accent:#7c3aed;--text:#e5e7eb;--muted:#9ca3af}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Poppins,system-ui}
+body{background:var(--bg);color:var(--text)}
+header{padding:40px 20px;text-align:center}
+h1{font-size:42px}
+p.tag{color:var(--muted);margin-top:10px}
+section{padding:60px 20px;max-width:1100px;margin:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.card{background:var(--card);border-radius:18px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+button{background:var(--accent);border:none;color:white;padding:12px 18px;border-radius:10px;cursor:pointer;font-weight:600}
+button:hover{opacity:.85}
+.price{margin:10px 0;font-size:14px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin-top:20px}
+th,td{border:1px solid #262633;padding:12px;text-align:center}
+footer{text-align:center;padding:40px;color:var(--muted)}
+.cta{display:flex;gap:14px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+input{padding:12px;border-radius:10px;border:none;width:240px;background:#111}
+</style>
+</head>
+<body>
+<header>
+<h1>MH BEATS</h1>
+<p class="tag">Producer from Morocco • Trap • Drill • Rage • Mixing & Mastering</p>
+<div class="cta">
+<button onclick="document.getElementById('beats').scrollIntoView()">Browse Beats</button>
+<button onclick="document.getElementById('mixing').scrollIntoView()">Mix & Master</button>
+</div>
+</header>
+<section id="beats">
+<h2>Beat Store</h2>
+<div class="grid">
+<div class="card">
+<img src="artworks/inferno.jpg" style="width:100%;border-radius:12px"/>
+<h3>Inferno Trap</h3>
+<audio controls src="beats/inferno.mp3" style="width:100%"></audio>
+<div class="price">MP3 $29 • WAV $49 • Exclusive $199</div>
+<div class="pay">
+<button onclick="buy('mp3','inferno')">Buy MP3</button>
+<button onclick="buy('wav','inferno')">Buy WAV</button>
+<button onclick="buy('exclusive','inferno')">Exclusive</button>
+</div>
+</div>
+<div class="card">
+<img src="artworks/nightfall.jpg" style="width:100%;border-radius:12px"/>
+<h3>Nightfall Drill</h3>
+<audio controls src="beats/nightfall.mp3" style="width:100%"></audio>
+<div class="price">MP3 $29 • WAV $49 • Exclusive $199</div>
+<div class="pay">
+<button onclick="buy('mp3','inferno')">Buy MP3</button>
+<button onclick="buy('wav','inferno')">Buy WAV</button>
+<button onclick="buy('exclusive','inferno')">Exclusive</button>
+</div>
+</div>
+</div>
+</section>
+<section>
+<h2>License Info</h2>
+<table>
+<tr><th>License</th><th>Streams</th><th>Monetization</th><th>Stems</th></tr>
+<tr><td>MP3</td><td>50K</td><td>Yes</td><td>No</td></tr>
+<tr><td>WAV</td><td>Unlimited</td><td>Yes</td><td>No</td></tr>
+<tr><td>Exclusive</td><td>Unlimited</td><td>Yes</td><td>Yes</td></tr>
+</table>
+</section>
+<section id="mixing">
+<h2>Mixing & Mastering</h2>
+<p style="color:var(--muted);margin-top:10px">Professional vocal mixing and mastering for artists worldwide.</p>
+<div class="cta"><button>Send Song</button></div>
+</section>
+<section>
+<h2>Get Free Beats</h2>
+<p class="tag">Join email list and receive 2 free beats + discounts</p>
+<div class="cta">
+<input placeholder="Your email">
+<button>Join</button>
+</div>
+</section>
+<footer>
+<p>© 2026 MH Beats • All rights reserved</p>
+</footer>
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
+<script>
+const prices={mp3:29,wav:49,exclusive:199};
+function buy(type,beat){
+ const amount=prices[type];
+ const email=prompt('Enter your email to receive license + download:');
+ if(!email) return;
+ localStorage.setItem('purchase',JSON.stringify({beat,type,email}));
+ window.location.href=`https://www.paypal.com/paypalme/mhboss2/${amount}`;
+}
+window.addEventListener('load',()=>{
+ const data=localStorage.getItem('purchase');
+ if(!data) return;
+ const {beat,type,email}=JSON.parse(data);
+ let file=`/beats/${beat}.mp3`;
+ if(type==='wav') file=`/beats/${beat}.wav`;
+ if(type==='exclusive') file=`/downloads/${beat}_stems.zip`;
+ setTimeout(()=>{
+   alert(`Payment detected! Download: ${location.origin+file}
+License will be sent to: ${email}`);
+ },900);
+ localStorage.removeItem('purchase');
+});
+</script><section id="filters"><h2>Browse by Style</h2><div class="cta"><button onclick="filter('all')">All</button><button onclick="filter('drill')">Drill</button><button onclick="filter('trap')">Trap</button><button onclick="filter('rage')">Rage</button></div></section>
+<section id="upload"><h2>Upload your song using my beat</h2><form action="https://formspree.io/f/yourid" method="POST" class="cta"><input name="artist" placeholder="Artist name" required><input name="link" placeholder="Song link (YouTube/Spotify)" required><button type="submit">Submit</button></form></section>
+<script>
+// tag filtering
+document.querySelectorAll('.card').forEach((c,i)=>{const tags=['trap','drill','rage'];c.dataset.tag=tags[i%tags.length];});
+function filter(t){document.querySelectorAll('.card').forEach(c=>{c.style.display=(t==='all'||c.dataset.tag===t)?'block':'none';});}
+
+// play counter
+document.querySelectorAll('audio').forEach(a=>{const key='plays_'+a.src;const span=document.createElement('div');span.style.fontSize='12px';a.parentNode.appendChild(span);const update=()=>span.textContent='Plays: '+(localStorage.getItem(key)||0);update();a.addEventListener('play',()=>{localStorage.setItem(key,(+localStorage.getItem(key)||0)+1);update();});});
+
+// discount codes
+const DISCOUNTS={MH10:0.9,FAN20:0.8};
+const oldBuy=buy;buy=function(type,beat){let code=prompt('Discount code? (or cancel)');let mult=DISCOUNTS[code]?DISCOUNTS[code]:1;prices[type]=Math.round(prices[type]*mult);oldBuy(type,beat);}
+
+// license pdf link
+window.addEventListener('load',()=>{const d=localStorage.getItem('purchase');if(d){const a=document.createElement('a');a.href='/license.pdf';a.textContent='Download License PDF';a.style.display='block';a.style.margin='20px';document.body.appendChild(a);}});
+</script>
+<section id="analytics"><h2>Producer Analytics</h2><div id="stats" class="cta"></div></section>
+<script>
+// ===== Voice Tag Watermark =====
+const tag=new Audio('/assets/tag.mp3');
+document.querySelectorAll('audio').forEach(player=>{
+ let interval=null;
+ player.addEventListener('play',()=>{
+   interval=setInterval(()=>{if(!player.paused){tag.currentTime=0;tag.volume=0.6;tag.play();}},20000);
+ });
+ player.addEventListener('pause',()=>clearInterval(interval));
+});
+
+// ===== Simple analytics dashboard =====
+function renderStats(){
+ let total=0;let html='';
+ Object.keys(localStorage).forEach(k=>{
+   if(k.startsWith('plays_')){const n=+localStorage.getItem(k);total+=n;html+=`<div>${k.split('/').pop()} : ${n} plays</div>`;}
+ });
+ html+=`<strong>Total Plays: ${total}</strong>`;
+ document.getElementById('stats').innerHTML=html;
+}
+window.addEventListener('load',renderStats);
+</script>
+</body>
+</html>
