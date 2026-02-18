@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MH GOT HIT - DARK MODE</title>
+<link rel="stylesheet" href="style.css" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<canvas id="particleCanvas"></canvas>
+
+<div class="loader">
+    <h1 class="glitch" data-text="MH GOT HIT">MH GOT HIT</h1>
+</div>
+
+<header>
+    <img src="logo.png" class="logo"/>
+    <nav>
+        <a href="#beats">Beats</a>
+        <a href="#upload">Artwork</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1 class="mega-title glitch" data-text="RAGE ENERGY">RAGE ENERGY</h1>
+    <p>Dark. Atmospheric. Stadium 808s.</p>
+    <button onclick="scrollToBeats()">ENTER THE VOID</button>
+</section>
+
+<section id="beats" class="beats-section">
+    <h2>Beat Vault</h2>
+    <div class="beats-grid">
+        <div class="beat-card">
+            <img src="favicon.png" />
+            <h3>ASTROWAVE</h3>
+            <audio controls src=""></audio>
+        </div>
+        <div class="beat-card">
+            <img src="favicon.png" />
+            <h3>CACTUS MODE</h3>
+            <audio controls src=""></audio>
+        </div>
+    </div>
+</section>
+
+<section id="upload" class="upload-section">
+    <h2>Upload Artwork</h2>
+    <input type="file" id="artworkInput" accept="image/*" multiple>
+    <div class="preview-grid" id="previewGrid"></div>
+</section>
+
+<section id="contact" class="contact-section">
+    <h2>Contact</h2>
+    <p>Email: mhgothit@email.com</p>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
