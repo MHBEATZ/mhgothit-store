@@ -53,7 +53,6 @@ z-index:100;
 width:60px;
 animation:flame 2s infinite alternate;
 }
-
 @keyframes flame{
 from{filter:drop-shadow(0 0 10px #ff3c00);}
 to{filter:drop-shadow(0 0 40px #ff6a00);}
@@ -89,7 +88,6 @@ text-shadow:0 0 50px #ff3c00;
 .section{padding:120px 10%;}
 .section h2{text-align:center;margin-bottom:60px;}
 
-/* BEATS */
 .beat-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
@@ -110,7 +108,6 @@ box-shadow:0 0 40px #ff3c00;
 .beat-card h3{margin-top:15px;}
 .beat-card p{color:#aaa;font-size:.9rem;margin-bottom:10px;}
 
-/* CUSTOM PLAYER */
 .player{
 display:flex;
 align-items:center;
@@ -138,7 +135,6 @@ background:#ff3c00;
 width:0%;
 }
 
-/* LICENSE */
 .beat-card select{
 width:100%;
 padding:10px;
@@ -156,7 +152,6 @@ border:none;
 cursor:pointer;
 }
 
-/* CART */
 #cart{
 position:fixed;
 right:-400px;
@@ -168,12 +163,12 @@ padding:20px;
 transition:.4s;
 z-index:200;
 border-left:1px solid #222;
+overflow-y:auto;
 }
 #cart.active{right:0;}
-#cart h3{margin-bottom:20px;}
 .cart-item{margin-bottom:15px;font-size:.9rem;}
 .checkout{
-margin-top:20px;
+margin-top:10px;
 padding:12px;
 background:#ff3c00;
 border:none;
@@ -181,7 +176,6 @@ width:100%;
 cursor:pointer;
 }
 
-/* CONTACT */
 .contact{
 padding:100px 10%;
 text-align:center;
@@ -210,6 +204,7 @@ color:#555;
 <img src="logo.png">
 <div>
 <a href="#beats">Beats</a>
+<a href="#services">Services</a>
 <a href="#contact">Contact</a>
 <a href="#" onclick="toggleCart()">Cart</a>
 </div>
@@ -223,7 +218,7 @@ color:#555;
 
 <section class="hero">
 <h1>MH BEATS</h1>
-<p>Moroccan Young Producer crafting hard, melodic & drill beats with industry-level mix & mastering.</p>
+<p>Industry level Trap, Drill & Professional Mix & Master.</p>
 </section>
 
 <section class="section" id="beats">
@@ -250,7 +245,25 @@ color:#555;
 </select>
 
 <button class="buy" onclick="addToCart('Inferno Trap','license1')">Add to Cart</button>
+</div>
 
+</div>
+</section>
+
+<section class="section" id="services">
+<h2>🎚 Mix & Master</h2>
+<div class="beat-grid">
+
+<div class="beat-card">
+<h3>Mix & Master Basic</h3>
+<p>Clean mix, vocal leveling, mastering ready.</p>
+<button class="buy" onclick="addService('Mix & Master Basic',49.99)">Add to Cart - $49.99</button>
+</div>
+
+<div class="beat-card">
+<h3>Mix & Master Pro</h3>
+<p>Advanced processing, stereo imaging, pro mastering.</p>
+<button class="buy" onclick="addService('Mix & Master Pro',79.99)">Add to Cart - $79.99</button>
 </div>
 
 </div>
@@ -258,7 +271,6 @@ color:#555;
 
 <section class="contact" id="contact">
 <h2>📩 Contact</h2>
-<p>Email for collaborations:</p>
 <a href="mailto:mhgothit@gmail.com">mhgothit@gmail.com</a>
 </section>
 
@@ -269,6 +281,7 @@ color:#555;
 <script>
 window.onload=function(){
 setTimeout(()=>{document.getElementById("loader").style.display="none";},1500);
+loadCart();
 }
 
 const canvas=document.getElementById("bg");
@@ -277,12 +290,7 @@ canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 let particles=[];
 for(let i=0;i<120;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-size:Math.random()*2,
-speedY:Math.random()*1+0.5
-});
+particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,size:Math.random()*2,speedY:Math.random()*1+0.5});
 }
 function animate(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -300,13 +308,8 @@ animate();
 
 function playAudio(id,btn){
 let audio=document.getElementById(id);
-if(audio.paused){
-audio.play();
-btn.innerText="⏸";
-}else{
-audio.pause();
-btn.innerText="▶";
-}
+if(audio.paused){audio.play();btn.innerText="⏸";}
+else{audio.pause();btn.innerText="▶";}
 audio.ontimeupdate=function(){
 let progress=(audio.currentTime/audio.duration)*100;
 document.getElementById("progress-"+id).style.width=progress+"%";
@@ -319,29 +322,80 @@ audio.currentTime=percent*audio.duration;
 }
 
 let cart=[];
+
+function saveCart(){
+localStorage.setItem("mh_cart",JSON.stringify(cart));
+renderCart();
+}
+
+function loadCart(){
+let saved=localStorage.getItem("mh_cart");
+if(saved){cart=JSON.parse(saved);renderCart();}
+}
+
 function addToCart(name,licenseId){
 let price=document.getElementById(licenseId).value;
 cart.push({name,price});
-renderCart();
+saveCart();
 toggleCart();
 }
+
+function addService(name,price){
+cart.push({name,price});
+saveCart();
+toggleCart();
+}
+
+function removeItem(index){
+cart.splice(index,1);
+saveCart();
+}
+
+function clearCart(){
+cart=[];
+saveCart();
+}
+
 function renderCart(){
 let container=document.getElementById("cart-items");
 container.innerHTML="";
-cart.forEach(item=>{
-container.innerHTML+=`<div class="cart-item">${item.name} - $${item.price}</div>`;
+let total=0;
+
+cart.forEach((item,index)=>{
+total+=parseFloat(item.price);
+container.innerHTML+=`
+<div class="cart-item">
+${item.name} - $${item.price}
+<button onclick="removeItem(${index})" style="float:right;background:none;border:none;color:#ff3c00;cursor:pointer;">✖</button>
+</div>`;
 });
+
+container.innerHTML+=`<hr style="margin:10px 0;border:1px solid #222;">`;
+container.innerHTML+=`<div style="margin-bottom:10px;">Total: <strong>$${total.toFixed(2)}</strong></div>`;
+container.innerHTML+=`<button onclick="clearCart()" style="background:#333;border:none;padding:8px;width:100%;color:white;cursor:pointer;margin-bottom:10px;">Clear Cart</button>`;
 }
+
 function toggleCart(){
 document.getElementById("cart").classList.toggle("active");
 }
+
 function checkout(){
 let total=cart.reduce((sum,item)=>sum+parseFloat(item.price),0);
 if(total>0){
 window.location.href="https://www.paypal.me/mhboss2/"+total;
+setTimeout(()=>{
+cart.forEach(item=>{
+let link=document.createElement("a");
+link.href="beat1.mp3";
+link.download=item.name+".mp3";
+link.click();
+});
+clearCart();
+},3000);
 }
 }
 </script>
 
 </body>
 </html>
+
