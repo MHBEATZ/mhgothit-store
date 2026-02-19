@@ -383,19 +383,12 @@ function checkout(){
 let total=cart.reduce((sum,item)=>sum+parseFloat(item.price),0);
 if(total>0){
 window.location.href="https://www.paypal.me/mhboss2/"+total;
-setTimeout(()=>{
-cart.forEach(item=>{
-let link=document.createElement("a");
-link.href="beat1.mp3";
-link.download=item.name+".mp3";
-link.click();
-});
-clearCart();
-},3000);
+alert("After completing payment, send confirmation to mhgothit@gmail.com to receive your files.");
 }
 }
 </script>
 
 </body>
 </html>
+
 
