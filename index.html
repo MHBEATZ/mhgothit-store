@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MH Beats</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header>
+  <h1>MH BEATS</h1>
+  <p>Premium Production • Instant Licensing</p>
+</header>
+
+<section class="controls">
+  <input type="text" id="search" placeholder="Search beats...">
+  <input type="text" id="promo" placeholder="Promo code">
+  <button onclick="applyPromo()">Apply</button>
+  <div class="cart" onclick="toggleCart()">🛒 Cart (<span id="cartCount">0</span>)</div>
+</section>
+
+<section id="beats" class="grid"></section>
+
+<div id="cartPanel" class="cartPanel hidden">
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <h3 id="total"></h3>
+  <button onclick="checkout()">Checkout with PayPal</button>
+</div>
+
+<section class="licenses">
+<h2>License Info</h2>
+<p><strong>Basic Lease:</strong> MP3 • 5k streams • Non‑exclusive</p>
+<p><strong>Premium Lease:</strong> WAV + MP3 • 50k streams • Non‑exclusive</p>
+<p><strong>Unlimited Lease:</strong> Unlimited streams • WAV + Trackouts</p>
+<p><strong>Exclusive:</strong> Beat removed from store • Full ownership</p>
+</section>
+
+<footer>© MH Beats</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
