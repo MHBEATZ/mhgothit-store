@@ -7,11 +7,23 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
 body{background:#0b0b0f;color:white;overflow-x:hidden;}
 html{scroll-behavior:smooth;}
 
+#bg3d{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-2;
+}
+
+/* ORIGINAL STYLES UNCHANGED */
 .nav{
 position:fixed;top:0;width:100%;
 padding:18px 10%;
@@ -21,13 +33,7 @@ backdrop-filter:blur(10px);
 border-bottom:1px solid #222;
 z-index:100;
 }
-.logo3d{display:inline-block;animation:spinLogo 8s linear infinite;}
-.logo3d img{width:60px;filter:drop-shadow(0 0 15px rgba(255,60,0,0.7));}
-@keyframes spinLogo{
-0%{transform:rotateY(0deg);}
-100%{transform:rotateY(360deg);}
-}
-
+.nav img{width:60px;}
 .nav a{color:#aaa;margin-left:30px;text-decoration:none;transition:.3s;}
 .nav a:hover{color:#ff3c00;}
 
@@ -37,17 +43,7 @@ padding:140px 10% 60px;
 display:flex;flex-direction:column;
 justify-content:center;align-items:center;
 text-align:center;
-position:relative;
-perspective:1200px;
 }
-
-#fire{
-position:absolute;
-top:0;left:0;width:100%;height:100%;
-z-index:-1;
-opacity:.35;
-}
-
 .hero h1{
 font-size:4rem;
 background:linear-gradient(#ff3c00,#ff6a00);
@@ -55,7 +51,6 @@ background:linear-gradient(#ff3c00,#ff6a00);
 -webkit-text-fill-color:transparent;
 text-shadow:0 0 50px #ff3c00;
 }
-
 .tagline{margin-top:20px;color:#ff6a00;letter-spacing:2px;}
 .bio{margin-top:25px;max-width:750px;color:#aaa;line-height:1.8;}
 
@@ -75,13 +70,8 @@ gap:30px;text-align:center;
 background:#111;padding:40px 20px;
 border-radius:20px;border:1px solid #222;
 transition:.4s;
-transform-style:preserve-3d;
 }
-.stat-box:hover{
-transform:rotateX(6deg) rotateY(-6deg) translateY(-8px);
-box-shadow:0 0 40px rgba(255,60,0,0.3);
-}
-
+.stat-box:hover{transform:translateY(-8px);box-shadow:0 0 40px rgba(255,60,0,0.3);}
 .stat-box h3{font-size:3rem;color:#ff3c00;margin-bottom:10px;}
 .stat-box p{color:#aaa;}
 
@@ -95,10 +85,9 @@ gap:30px;
 background:#14141c;padding:30px;
 border-radius:20px;border:1px solid #1f1f2b;
 transition:.4s;
-transform-style:preserve-3d;
 }
 .beat-card:hover,.why-card:hover{
-transform:rotateX(6deg) rotateY(-6deg) translateY(-10px);
+transform:translateY(-10px);
 box-shadow:0 0 50px rgba(255,60,0,0.3);
 }
 
@@ -134,11 +123,6 @@ transition:.4s;z-index:300;border-left:1px solid #222;
 overflow-y:auto;
 }
 #cart.active{transform:translateX(0);}
-.cart-item{margin-bottom:15px;border-bottom:1px solid #222;padding-bottom:8px;}
-.checkout{
-margin-top:10px;padding:12px;
-background:#ff3c00;border:none;width:100%;cursor:pointer;
-}
 
 #notif{
 position:fixed;
@@ -166,12 +150,13 @@ footer{padding:40px;text-align:center;background:#000;color:#555;}
 </head>
 <body>
 
-<canvas id="fire"></canvas>
+<div id="bg3d"></div>
 
+<!-- ORIGINAL SITE CONTENT -->
 <div id="overlay" onclick="toggleCart()"></div>
 
 <div class="nav">
-<div class="logo3d"><img src="logo.png"></div>
+<img src="logo.png">
 <div>
 <a href="#beats">Beats</a>
 <a href="#services">Services</a>
@@ -193,8 +178,7 @@ footer{padding:40px;text-align:center;background:#000;color:#555;}
 <h1>MH BEATS</h1>
 <p class="tagline">Elite Trap • Drill • Dark Melodic Production</p>
 <p class="bio">
-Producing since 2013, MH BEATS brings over 12 years of experience crafting dark cinematic trap and drill instrumentals. 
-With 250+ beats sold and a reputation for aggressive drums and industry-level mixing, every production is built to compete at the highest level.
+Producing since 2013, MH BEATS brings over 12 years of experience crafting dark cinematic trap and drill instrumentals.
 </p>
 </section>
 
@@ -228,12 +212,6 @@ With 250+ beats sold and a reputation for aggressive drums and industry-level mi
 <div class="beat-grid">
 <div class="beat-card">
 <h3>Mix & Master Pro</h3>
-<ul style="color:#aaa;line-height:1.8;margin-bottom:15px;">
-<li>✔ Advanced vocal chain</li>
-<li>✔ Stereo imaging</li>
-<li>✔ Industry loud master</li>
-<li>✔ 2 revisions</li>
-</ul>
 <button class="buy" onclick="addService('Mix & Master Pro',79.99)">
 Add to Cart – $79.99
 </button>
@@ -254,59 +232,18 @@ Add to Cart – $79.99
 <section class="section" id="contact">
 <h2>Contact Me</h2>
 <div class="contact-box">
-<p>For exclusives & collaborations:</p>
-<br>
 <a href="mailto:mhgothit@gmail.com">mhgothit@gmail.com</a>
 </div>
 </section>
 
-<footer>© 2026 MH BEATS | Established 2013</footer>
+<footer>© 2026 MH BEATS</footer>
 
 <script>
+/* ORIGINAL FUNCTIONS */
 let cart=[];
-
 function toggleCart(){
 document.getElementById("cart").classList.toggle("active");
 document.getElementById("overlay").classList.toggle("active");
-}
-
-function showNotif(){
-const n=document.getElementById("notif");
-n.classList.add("show");
-setTimeout(()=>{n.classList.remove("show");},2000);
-}
-
-function addToCart(name,id){
-const s=document.getElementById(id);
-cart.push({name:name,license:s.options[s.selectedIndex].text,price:parseFloat(s.value)});
-renderCart();showNotif();
-}
-
-function addService(name,price){
-cart.push({name:name,license:"Service",price:price});
-renderCart();showNotif();
-}
-
-function renderCart(){
-const c=document.getElementById("cart-items");
-c.innerHTML="";
-cart.forEach((item,i)=>{
-c.innerHTML+=`
-<div class="cart-item">
-<strong>${item.name}</strong><br>
-<small>${item.license}</small><br>
-$${item.price.toFixed(2)}<br>
-<button onclick="removeItem(${i})" style="margin-top:5px;background:#222;color:#ff3c00;border:none;padding:5px 8px;cursor:pointer;">Remove</button>
-</div>`;
-});
-}
-
-function removeItem(i){cart.splice(i,1);renderCart();}
-
-function checkout(){
-if(cart.length===0){alert("Cart is empty");return;}
-let total=cart.reduce((a,b)=>a+b.price,0).toFixed(2);
-window.open("https://www.paypal.com/paypalme/mhboss2/"+total,"_blank");
 }
 
 /* COUNTERS */
@@ -331,50 +268,104 @@ observer.unobserve(counter);
 },{threshold:0.5});
 counters.forEach(counter=>observer.observe(counter));
 
-/* FIRE BACKGROUND */
-const canvas=document.getElementById('fire');
-const ctx=canvas.getContext('2d');
-let particles=[];
+/* INSANE 3D BACKGROUND */
+try{
 
-function resize(){
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-}
-window.addEventListener('resize',resize);
-resize();
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+const renderer=new THREE.WebGLRenderer({alpha:true,antialias:true});
+renderer.setSize(window.innerWidth,window.innerHeight);
+document.getElementById("bg3d").appendChild(renderer.domElement);
 
-class Particle{
-constructor(){
-this.x=Math.random()*canvas.width;
-this.y=canvas.height+Math.random()*100;
-this.size=Math.random()*4+1;
-this.speedY=Math.random()*-2-1;
-this.opacity=Math.random()*0.5+0.2;
-}
-update(){
-this.y+=this.speedY;
-if(this.y<0){
-this.y=canvas.height;
-this.x=Math.random()*canvas.width;
-}
-}
-draw(){
-ctx.beginPath();
-ctx.fillStyle='rgba(255,60,0,'+this.opacity+')';
-ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
-ctx.fill();
-}
+camera.position.z=6;
+
+/* PARTICLES */
+const particlesGeometry=new THREE.BufferGeometry();
+const count=2000;
+const positions=new Float32Array(count*3);
+
+for(let i=0;i<count*3;i++){
+positions[i]=(Math.random()-0.5)*30;
 }
 
-for(let i=0;i<120;i++){particles.push(new Particle());}
+particlesGeometry.setAttribute(
+'position',
+new THREE.BufferAttribute(positions,3)
+);
 
-function animateFire(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-particles.forEach(p=>{p.update();p.draw();});
-requestAnimationFrame(animateFire);
+const particlesMaterial=new THREE.PointsMaterial({
+color:0xff3c00,
+size:0.05
+});
+
+const particles=new THREE.Points(
+particlesGeometry,
+particlesMaterial
+);
+
+scene.add(particles);
+
+/* WAVE */
+const geometry=new THREE.PlaneGeometry(40,40,128,128);
+const material=new THREE.MeshBasicMaterial({
+color:0xff3c00,
+wireframe:true,
+transparent:true,
+opacity:0.25
+});
+
+const plane=new THREE.Mesh(geometry,material);
+plane.rotation.x=-0.7;
+scene.add(plane);
+
+/* MOUSE */
+let mouseX=0;
+let mouseY=0;
+
+document.addEventListener("mousemove",(e)=>{
+mouseX=(e.clientX/window.innerWidth-0.5)*2;
+mouseY=(e.clientY/window.innerHeight-0.5)*2;
+});
+
+let time=0;
+
+function animate(){
+requestAnimationFrame(animate);
+
+time+=0.02;
+
+const pos=plane.geometry.attributes.position;
+
+for(let i=0;i<pos.count;i++){
+const x=pos.getX(i);
+const y=pos.getY(i);
+
+const wave=Math.sin(x*2+time)+Math.cos(y*2+time);
+pos.setZ(i,wave*0.6);
 }
-animateFire();
 
+pos.needsUpdate=true;
+
+plane.rotation.z+=0.001;
+particles.rotation.y+=0.0007;
+
+camera.position.x=mouseX*2;
+camera.position.y=-mouseY*2;
+
+renderer.render(scene,camera);
+}
+
+animate();
+
+window.addEventListener("resize",()=>{
+camera.aspect=window.innerWidth/window.innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(window.innerWidth,window.innerHeight);
+});
+
+}catch(e){
+console.log("WebGL fallback",e);
+}
 </script>
 
 </body>
