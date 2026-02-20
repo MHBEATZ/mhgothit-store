@@ -7,6 +7,8 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<!-- Add Font Awesome for the PayPal icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
@@ -123,6 +125,52 @@ border-radius:20px;border:1px solid #1f1f2b;
 .contact-box a{color:#ff3c00;font-weight:bold;text-decoration:none;font-size:18px;}
 
 footer{padding:40px;text-align:center;background:#000;color:#555;}
+
+/* PayPal button style */
+.paypal-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    background: linear-gradient(90deg, #ff3c00, #ff6a00);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.paypal-btn i {
+    margin-right: 10px; /* Space between icon and text */
+    font-size: 1.2rem;
+}
+
+.paypal-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 60, 0, 0.6);
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: #ff3c00;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: 10px;
+    transition: color 0.3s;
+}
+
+.remove-btn:hover {
+    color: #ff6a00;
+}
+
+.fade-out {
+    opacity: 0;
+    transform: translateX(10px);
+    transition: opacity 0.5s, transform 0.5s;
+}
 </style>
 </head>
 <body>
@@ -145,7 +193,9 @@ footer{padding:40px;text-align:center;background:#000;color:#555;}
 <div id="cart">
 <h3>🛒 Cart</h3>
 <div id="cart-items"></div>
-<button class="checkout" onclick="checkout()">Checkout with PayPal</button>
+<button class="paypal-btn" onclick="checkout()">
+    <i class="fab fa-paypal"></i> Checkout with PayPal
+</button>
 </div>
 
 <div id="notif">Added to Cart 🔥</div>
@@ -211,123 +261,138 @@ Add to Cart – $79.99
 
 <script>
 function toggleCart(){
-document.getElementById("cart").classList.toggle("active");
-document.getElementById("overlay").classList.toggle("active");
+    document.getElementById("cart").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");
 }
 
 /* CART SYSTEM FIX */
 let cart = [];
 
 function addToCart(name, licenseId){
-const price = parseFloat(document.getElementById(licenseId).value);
-cart.push({name:name, price:price});
-updateCart();
-showNotif(name + " added to cart 🔥");
+    const price = parseFloat(document.getElementById(licenseId).value);
+    cart.push({name:name, price:price});
+    updateCart();
+    showNotif(name + " added to cart 🔥");
 }
 
 function addService(name, price){
-cart.push({name:name, price:price});
-updateCart();
-showNotif(name + " added to cart 🔥");
+    cart.push({name:name, price:price});
+    updateCart();
+    showNotif(name + " added to cart 🔥");
 }
 
 function updateCart(){
-const cartContainer = document.getElementById("cart-items");
-cartContainer.innerHTML = "";
-let total = 0;
+    const cartContainer = document.getElementById("cart-items");
+    cartContainer.innerHTML = "";
+    let total = 0;
 
-cart.forEach(item=>{
-total += item.price;
-const div = document.createElement("div");
-div.style.marginBottom="10px";
-div.innerHTML = item.name + " — $" + item.price.toFixed(2);
-cartContainer.appendChild(div);
-});
+    cart.forEach((item, index) => {
+        total += item.price;
+        const div = document.createElement("div");
+        div.style.marginBottom="10px";
+        div.innerHTML = `${item.name} — $${item.price.toFixed(2)} 
+            <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>`;
+        cartContainer.appendChild(div);
+    });
 
-const totalDiv=document.createElement("div");
-totalDiv.style.marginTop="20px";
-totalDiv.style.fontWeight="bold";
-totalDiv.innerHTML="Total: $"+total.toFixed(2);
-cartContainer.appendChild(totalDiv);
+    const totalDiv = document.createElement("div");
+    totalDiv.style.marginTop="20px";
+    totalDiv.style.fontWeight="bold";
+    totalDiv.innerHTML = "Total: $" + total.toFixed(2);
+    cartContainer.appendChild(totalDiv);
 }
 
-function showNotif(text){
-const notif=document.getElementById("notif");
-notif.innerText=text;
-notif.classList.add("show");
-setTimeout(()=>{notif.classList.remove("show");},2000);
+function removeFromCart(index) {
+    // Fade out effect before removal
+    const cartContainer = document.getElementById("cart-items");
+    const itemDiv = cartContainer.children[index];
+    
+    // Add fade-out class to animate removal
+    itemDiv.classList.add("fade-out");
+
+    setTimeout(() => {
+        cart.splice(index, 1); // Remove the item from the cart
+        updateCart(); // Re-render the cart
+    }, 500); // Wait for fade-out animation before removal
+}
+
+function showNotif(text) {
+    const notif = document.getElementById("notif");
+    notif.innerText = text;
+    notif.classList.add("show");
+    setTimeout(() => { notif.classList.remove("show"); }, 2000);
 }
 
 function checkout(){
-if(cart.length===0){
-showNotif("Cart is empty");
-return;
-}
-window.open("https://www.paypal.me/mhboss2","_blank");
+    if(cart.length===0){
+        showNotif("Cart is empty");
+        return;
+    }
+    window.open("https://www.paypal.me/mhboss2","_blank");
 }
 
 /* INSANE 3D BACKGROUND */
 try{
-const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-const renderer=new THREE.WebGLRenderer({alpha:true,antialias:true});
-renderer.setSize(window.innerWidth,window.innerHeight);
-document.getElementById("bg3d").appendChild(renderer.domElement);
-camera.position.z=6;
+    const scene=new THREE.Scene();
+    const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+    const renderer=new THREE.WebGLRenderer({alpha:true,antialias:true});
+    renderer.setSize(window.innerWidth,window.innerHeight);
+    document.getElementById("bg3d").appendChild(renderer.domElement);
+    camera.position.z=6;
 
-const particlesGeometry=new THREE.BufferGeometry();
-const count=2000;
-const positions=new Float32Array(count*3);
-for(let i=0;i<count*3;i++){positions[i]=(Math.random()-0.5)*30;}
-particlesGeometry.setAttribute('position',new THREE.BufferAttribute(positions,3));
+    const particlesGeometry=new THREE.BufferGeometry();
+    const count=2000;
+    const positions=new Float32Array(count*3);
+    for(let i=0;i<count*3;i++){positions[i]=(Math.random()-0.5)*30;}
+    particlesGeometry.setAttribute('position',new THREE.BufferAttribute(positions,3));
 
-const particlesMaterial=new THREE.PointsMaterial({color:0xff3c00,size:0.05});
-const particles=new THREE.Points(particlesGeometry,particlesMaterial);
-scene.add(particles);
+    const particlesMaterial=new THREE.PointsMaterial({color:0xff3c00,size:0.05});
+    const particles=new THREE.Points(particlesGeometry,particlesMaterial);
+    scene.add(particles);
 
-const geometry=new THREE.PlaneGeometry(40,40,128,128);
-const material=new THREE.MeshBasicMaterial({
-color:0xff3c00,wireframe:true,transparent:true,opacity:0.25
-});
-const plane=new THREE.Mesh(geometry,material);
-plane.rotation.x=-0.7;
-scene.add(plane);
+    const geometry=new THREE.PlaneGeometry(40,40,128,128);
+    const material=new THREE.MeshBasicMaterial({
+        color:0xff3c00,wireframe:true,transparent:true,opacity:0.25
+    });
+    const plane=new THREE.Mesh(geometry,material);
+    plane.rotation.x=-0.7;
+    scene.add(plane);
 
-let mouseX=0,mouseY=0;
-document.addEventListener("mousemove",(e)=>{
-mouseX=(e.clientX/window.innerWidth-0.5)*2;
-mouseY=(e.clientY/window.innerHeight-0.5)*2;
-});
+    let mouseX=0,mouseY=0;
+    document.addEventListener("mousemove",(e)=>{
+        mouseX=(e.clientX/window.innerWidth-0.5)*2;
+        mouseY=(e.clientY/window.innerHeight-0.5)*2;
+    });
 
-let time=0;
-function animate(){
-requestAnimationFrame(animate);
-time+=0.02;
+    let time=0;
+    function animate(){
+        requestAnimationFrame(animate);
+        time+=0.02;
 
-const pos=plane.geometry.attributes.position;
-for(let i=0;i<pos.count;i++){
-const x=pos.getX(i);
-const y=pos.getY(i);
-const wave=Math.sin(x*2+time)+Math.cos(y*2+time);
-pos.setZ(i,wave*0.6);
-}
-pos.needsUpdate=true;
+        const pos=plane.geometry.attributes.position;
+        for(let i=0;i<pos.count;i++){
+            const x=pos.getX(i);
+            const y=pos.getY(i);
+            const wave=Math.sin(x*2+time)+Math.cos(y*2+time);
+            pos.setZ(i,wave*0.6);
+        }
+        pos.needsUpdate=true;
 
-plane.rotation.z+=0.001;
-particles.rotation.y+=0.0007;
+        plane.rotation.z+=0.001;
+        particles.rotation.y+=0.0007;
 
-camera.position.x=mouseX*2;
-camera.position.y=-mouseY*2;
+        camera.position.x=mouseX*2;
+        camera.position.y=-mouseY*2;
 
-renderer.render(scene,camera);
-}
-animate();
+        renderer.render(scene,camera);
+    }
+    animate();
 
-window.addEventListener("resize",()=>{
-camera.aspect=window.innerWidth/window.innerHeight;
-camera.updateProjectionMatrix();
-renderer.setSize(window.innerWidth,window.innerHeight);
-});
+    window.addEventListener("resize",()=>{
+        camera.aspect=window.innerWidth/window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth,window.innerHeight);
+    });
 }catch(e){console.log("WebGL fallback",e);}
 </script>
 
