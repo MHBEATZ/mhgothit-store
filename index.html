@@ -6,7 +6,6 @@
 <title>MH BEATS | Elite Production</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 
 <style>
@@ -14,16 +13,8 @@
 body{background:#0b0b0f;color:white;overflow-x:hidden;}
 html{scroll-behavior:smooth;}
 
-#bg3d{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-2;
-}
+#bg3d{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;}
 
-/* ORIGINAL STYLES UNCHANGED */
 .nav{
 position:fixed;top:0;width:100%;
 padding:18px 10%;
@@ -60,20 +51,6 @@ text-align:center;margin-bottom:50px;font-size:2.2rem;
 background:linear-gradient(#ff3c00,#ff6a00);
 -webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
-
-.stats-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:30px;text-align:center;
-}
-.stat-box{
-background:#111;padding:40px 20px;
-border-radius:20px;border:1px solid #222;
-transition:.4s;
-}
-.stat-box:hover{transform:translateY(-8px);box-shadow:0 0 40px rgba(255,60,0,0.3);}
-.stat-box h3{font-size:3rem;color:#ff3c00;margin-bottom:10px;}
-.stat-box p{color:#aaa;}
 
 .beat-grid,.why-grid{
 display:grid;
@@ -152,7 +129,6 @@ footer{padding:40px;text-align:center;background:#000;color:#555;}
 
 <div id="bg3d"></div>
 
-<!-- ORIGINAL SITE CONTENT -->
 <div id="overlay" onclick="toggleCart()"></div>
 
 <div class="nav">
@@ -178,23 +154,17 @@ footer{padding:40px;text-align:center;background:#000;color:#555;}
 <h1>MH BEATS</h1>
 <p class="tagline">Elite Trap • Drill • Dark Melodic Production</p>
 <p class="bio">
-Producing since 2013, MH BEATS brings over 12 years of experience crafting dark cinematic trap and drill instrumentals.
+MH Beats is a professional music producer specializing in dark, emotional, and industry-ready sound.
+With years of experience crafting unique melodies and powerful drum patterns, MH Beats focuses on
+creating music that helps artists stand out and dominate their genre.
+From trap and drill to cinematic styles, every beat is carefully designed with modern production techniques.
 </p>
-</section>
-
-<section class="section" id="stats">
-<h2>Proven Results</h2>
-<div class="stats-grid">
-<div class="stat-box"><h3 class="counter" data-target="250">0</h3><p>Beats Sold</p></div>
-<div class="stat-box"><h3 class="counter" data-target="140">0</h3><p>Artists Served</p></div>
-<div class="stat-box"><h3 class="counter" data-target="12">0</h3><p>Years Experience</p></div>
-<div class="stat-box"><h3 class="counter" data-target="100">0</h3><p>% Client Satisfaction</p></div>
-</div>
 </section>
 
 <section class="section" id="beats">
 <h2>Premium Beats</h2>
 <div class="beat-grid">
+
 <div class="beat-card">
 <h3>Inferno Trap</h3>
 <select id="license1">
@@ -204,6 +174,7 @@ Producing since 2013, MH BEATS brings over 12 years of experience crafting dark 
 </select>
 <button class="buy" onclick="addToCart('Inferno Trap','license1')">Add to Cart</button>
 </div>
+
 </div>
 </section>
 
@@ -239,111 +210,107 @@ Add to Cart – $79.99
 <footer>© 2026 MH BEATS</footer>
 
 <script>
-/* ORIGINAL FUNCTIONS */
-let cart=[];
 function toggleCart(){
 document.getElementById("cart").classList.toggle("active");
 document.getElementById("overlay").classList.toggle("active");
 }
 
-/* COUNTERS */
-const counters=document.querySelectorAll('.counter');
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-const counter=entry.target;
-const update=()=>{
-const target=+counter.getAttribute('data-target');
-const count=+counter.innerText;
-const increment=target/200;
-if(count<target){
-counter.innerText=Math.ceil(count+increment);
-setTimeout(update,15);
-}else{counter.innerText=target;}
-};
-update();
-observer.unobserve(counter);
+/* CART SYSTEM FIX */
+let cart = [];
+
+function addToCart(name, licenseId){
+const price = parseFloat(document.getElementById(licenseId).value);
+cart.push({name:name, price:price});
+updateCart();
+showNotif(name + " added to cart 🔥");
 }
+
+function addService(name, price){
+cart.push({name:name, price:price});
+updateCart();
+showNotif(name + " added to cart 🔥");
+}
+
+function updateCart(){
+const cartContainer = document.getElementById("cart-items");
+cartContainer.innerHTML = "";
+let total = 0;
+
+cart.forEach(item=>{
+total += item.price;
+const div = document.createElement("div");
+div.style.marginBottom="10px";
+div.innerHTML = item.name + " — $" + item.price.toFixed(2);
+cartContainer.appendChild(div);
 });
-},{threshold:0.5});
-counters.forEach(counter=>observer.observe(counter));
+
+const totalDiv=document.createElement("div");
+totalDiv.style.marginTop="20px";
+totalDiv.style.fontWeight="bold";
+totalDiv.innerHTML="Total: $"+total.toFixed(2);
+cartContainer.appendChild(totalDiv);
+}
+
+function showNotif(text){
+const notif=document.getElementById("notif");
+notif.innerText=text;
+notif.classList.add("show");
+setTimeout(()=>{notif.classList.remove("show");},2000);
+}
+
+function checkout(){
+if(cart.length===0){
+showNotif("Cart is empty");
+return;
+}
+window.open("https://www.paypal.me/mhboss2","_blank");
+}
 
 /* INSANE 3D BACKGROUND */
 try{
-
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
 const renderer=new THREE.WebGLRenderer({alpha:true,antialias:true});
 renderer.setSize(window.innerWidth,window.innerHeight);
 document.getElementById("bg3d").appendChild(renderer.domElement);
-
 camera.position.z=6;
 
-/* PARTICLES */
 const particlesGeometry=new THREE.BufferGeometry();
 const count=2000;
 const positions=new Float32Array(count*3);
+for(let i=0;i<count*3;i++){positions[i]=(Math.random()-0.5)*30;}
+particlesGeometry.setAttribute('position',new THREE.BufferAttribute(positions,3));
 
-for(let i=0;i<count*3;i++){
-positions[i]=(Math.random()-0.5)*30;
-}
-
-particlesGeometry.setAttribute(
-'position',
-new THREE.BufferAttribute(positions,3)
-);
-
-const particlesMaterial=new THREE.PointsMaterial({
-color:0xff3c00,
-size:0.05
-});
-
-const particles=new THREE.Points(
-particlesGeometry,
-particlesMaterial
-);
-
+const particlesMaterial=new THREE.PointsMaterial({color:0xff3c00,size:0.05});
+const particles=new THREE.Points(particlesGeometry,particlesMaterial);
 scene.add(particles);
 
-/* WAVE */
 const geometry=new THREE.PlaneGeometry(40,40,128,128);
 const material=new THREE.MeshBasicMaterial({
-color:0xff3c00,
-wireframe:true,
-transparent:true,
-opacity:0.25
+color:0xff3c00,wireframe:true,transparent:true,opacity:0.25
 });
-
 const plane=new THREE.Mesh(geometry,material);
 plane.rotation.x=-0.7;
 scene.add(plane);
 
-/* MOUSE */
-let mouseX=0;
-let mouseY=0;
-
+let mouseX=0,mouseY=0;
 document.addEventListener("mousemove",(e)=>{
 mouseX=(e.clientX/window.innerWidth-0.5)*2;
 mouseY=(e.clientY/window.innerHeight-0.5)*2;
 });
 
 let time=0;
-
 function animate(){
 requestAnimationFrame(animate);
-
 time+=0.02;
 
 const pos=plane.geometry.attributes.position;
-
 for(let i=0;i<pos.count;i++){
 const x=pos.getX(i);
 const y=pos.getY(i);
-
 const wave=Math.sin(x*2+time)+Math.cos(y*2+time);
 pos.setZ(i,wave*0.6);
 }
-
 pos.needsUpdate=true;
 
 plane.rotation.z+=0.001;
@@ -354,7 +321,6 @@ camera.position.y=-mouseY*2;
 
 renderer.render(scene,camera);
 }
-
 animate();
 
 window.addEventListener("resize",()=>{
@@ -362,10 +328,7 @@ camera.aspect=window.innerWidth/window.innerHeight;
 camera.updateProjectionMatrix();
 renderer.setSize(window.innerWidth,window.innerHeight);
 });
-
-}catch(e){
-console.log("WebGL fallback",e);
-}
+}catch(e){console.log("WebGL fallback",e);}
 </script>
 
 </body>
