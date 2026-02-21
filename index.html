@@ -52,7 +52,6 @@ header p{
   opacity:.85;
 }
 
-/* STAT COUNTERS */
 .stats{
   display:flex;
   justify-content:center;
@@ -165,74 +164,38 @@ button{
 <canvas id="bg"></canvas>
 
 <header>
-  <img src="artwork/logo.jpg" alt="MH Beats Logo">
+  <img src="artwork/logo.jpg">
   <h1>MH BEATS</h1>
+  <p>Producer & sound architect crafting dark, high-energy beats since <strong>2013</strong>.</p>
 
-  <p>
-    Producer & sound architect crafting dark, high-energy beats since <strong>2013</strong>.
-    Worked with artists worldwide and delivered industry-ready sound.
-  </p>
-
-  <!-- ANIMATED STATS -->
   <div class="stats">
-    <div class="stat">
-      <span data-target="2013">0</span>
-      <p>Since</p>
-    </div>
-    <div class="stat">
-      <span data-target="150">0</span>
-      <p>Artists Worked With</p>
-    </div>
-    <div class="stat">
-      <span data-target="500">0</span>
-      <p>Beats Sold</p>
-    </div>
+    <div class="stat"><span data-target="2013">0</span><p>Since</p></div>
+    <div class="stat"><span data-target="150">0</span><p>Artists Worked With</p></div>
+    <div class="stat"><span data-target="500">0</span><p>Beats Sold</p></div>
   </div>
-
-  <p style="opacity:.7;margin-top:20px">
-    Trap • Drill • Rage • Underground
-  </p>
 </header>
 
-<!-- BEATS -->
 <section>
   <h2>Beats</h2>
   <div id="beats"></div>
 </section>
 
-<!-- MIX & MASTER -->
 <section>
   <h2>Mix & Master Services</h2>
   <div class="service-box">
-    <p>
-      Industry-ready mixing & mastering for Trap, Drill, Rage & Hip-Hop.
-      Clean vocals, heavy drums, loud streaming-optimized sound.
-    </p>
-    <ul>
-      <li>✔ Full Mix & Master</li>
-      <li>✔ Vocal tuning & cleanup</li>
-      <li>✔ Streaming loudness optimization</li>
-      <li>✔ Unlimited revisions</li>
-    </ul>
-    <a href="mailto:mhgothit@gmail.com">
-      <button>Contact for Pricing</button>
-    </a>
+    <p>Industry-ready mixing & mastering.</p>
+    <a href="mailto:mhgothit@gmail.com"><button>Contact for Pricing</button></a>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section>
   <h2>Contact Me</h2>
   <div class="service-box">
-    <p>Custom beats, exclusives, or mixing & mastering.</p>
     <p><strong>Email:</strong> mhgothit@gmail.com</p>
-    <a href="mailto:mhgothit@gmail.com">
-      <button>Send Email</button>
-    </a>
+    <a href="mailto:mhgothit@gmail.com"><button>Send Email</button></a>
   </div>
 </section>
 
-<!-- CART -->
 <div id="cart">
   <h2>🛒 Cart</h2>
   <ul id="cartItems"></ul>
@@ -243,18 +206,12 @@ button{
 <div id="notif"></div>
 
 <script>
-/* 🔥 ENHANCED 3D BACKGROUND */
+/* BACKGROUND */
 const c=document.getElementById("bg"),ctx=c.getContext("2d");
 let w,h,pts=[];
 function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
 window.onresize=resize;resize();
-for(let i=0;i<120;i++)pts.push({
- x:Math.random()*w,
- y:Math.random()*h,
- z:Math.random()*2+0.5,
- vx:(Math.random()-.5)*.25,
- vy:(Math.random()-.5)*.25
-});
+for(let i=0;i<120;i++)pts.push({x:Math.random()*w,y:Math.random()*h,z:Math.random()*2+.5,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25});
 (function anim(){
  ctx.clearRect(0,0,w,h);
  pts.forEach(p=>{
@@ -262,29 +219,13 @@ for(let i=0;i<120;i++)pts.push({
   if(p.x<0||p.x>w)p.vx*=-1;
   if(p.y<0||p.y>h)p.vy*=-1;
   ctx.fillStyle=`rgba(255,100,0,${p.z})`;
-  ctx.beginPath();
-  ctx.arc(p.x,p.y,2*p.z,0,Math.PI*2);
-  ctx.fill();
+  ctx.beginPath();ctx.arc(p.x,p.y,2*p.z,0,Math.PI*2);ctx.fill();
  });
  requestAnimationFrame(anim);
 })();
 
-/* 🔢 STAT COUNTER ANIMATION */
-document.querySelectorAll(".stat span").forEach(el=>{
-  let target=+el.dataset.target;
-  let count=0;
-  let speed=target>1000?20:10;
-  const update=()=>{
-    count+=Math.ceil(target/60);
-    if(count>target) count=target;
-    el.textContent=count+(el.dataset.target>2013?"+":"");
-    if(count<target) requestAnimationFrame(update);
-  };
-  update();
-});
-
 /* STORE */
-let cart=[],currentWave=null;
+let cart=[], currentWave=null, waves=[];
 
 fetch("beats.json")
 .then(r=>r.json())
@@ -307,21 +248,21 @@ fetch("beats.json")
   `;
   cont.appendChild(d);
 
-  b.wave=WaveSurfer.create({
+  b.wave = WaveSurfer.create({
     container:"#wave"+i,
     waveColor:"#333",
     progressColor:"#ff6a00",
     height:60,
     barWidth:2
   });
+
+  waves[i] = b.wave;
   b.wave.load(b.audio);
  });
 });
 
 function play(i){
-  const beat = document.querySelectorAll(".beat")[i];
-  const waves = WaveSurfer.instances;
-  if(currentWave) currentWave.pause();
+  if(currentWave && currentWave !== waves[i]) currentWave.pause();
   currentWave = waves[i];
   currentWave.playPause();
 }
