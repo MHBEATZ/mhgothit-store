@@ -1,7 +1,22 @@
 [
   {
-    "title": "PAIN HARD TRAP BEAT",
-    "audio": "beats/pain-hard-trap-beat.mp3",
-    "art": "artwork/pain-hard-trap-beat.jpg"
+    "title": "Pain Hard Trap",
+    "art": "artwork/beat1.jpg",
+    "audio": "beats/beat1.mp3",
+    "licenses": {
+      "mp3": 25,
+      "wav": 50,
+      "exclusive": 300
+    }
+  },
+  {
+    "title": "Dark Rage",
+    "art": "artwork/beat2.jpg",
+    "audio": "beats/beat2.mp3",
+    "licenses": {
+      "mp3": 30,
+      "wav": 60,
+      "exclusive": 350
+    }
   }
 ]
