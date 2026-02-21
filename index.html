@@ -319,9 +319,11 @@ fetch("beats.json")
 });
 
 function play(i){
- if(currentWave) currentWave.pause();
- currentWave=WaveSurfer.instances[i];
- currentWave.playPause();
+  const beat = document.querySelectorAll(".beat")[i];
+  const waves = WaveSurfer.instances;
+  if(currentWave) currentWave.pause();
+  currentWave = waves[i];
+  currentWave.playPause();
 }
 
 function addToCart(b,i){
