@@ -1,12 +1,62 @@
 [
   {
-    "title": "Pain Hard Trap",
+    "title": "PAIN",
     "art": "artwork/beat1.jpg",
     "audio": "beats/beat1.mp3",
-    "licenses": {
-      "mp3": 25,
-      "wav": 50,
-      "exclusive": 300
-    }
+    "licenses": { "mp3": 30, "wav": 60, "exclusive": 200 }
+  },
+  {
+    "title": "BLOOD IN HOODIE",
+    "art": "artwork/beat2.jpg",
+    "audio": "beats/beat2.mp3",
+    "licenses": { "mp3": 30, "wav": 60, "exclusive": 200 }
+  },
+  {
+    "title": "Beat 3",
+    "art": "artwork/beat3.jpg",
+    "audio": "beats/beat3.mp3",
+    "licenses": { "mp3": 30, "wav": 60, "exclusive": 200 }
+  },
+  {
+    "title": "Beat 4",
+    "art": "artwork/beat4.jpg",
+    "audio": "beats/beat4.mp3",
+    "licenses": { "mp3": 30, "wav": 60, "exclusive": 200 }
+  },
+  {
+    "title": "Beat 5",
+    "art": "artwork/beat5.jpg",
+    "audio": "beats/beat5.mp3",
+    "licenses": { "mp3": 30, "wav": 60, "exclusive": 200 }
+  },
+  {
+    "title": "Beat 6",
+    "art": "artwork/beat6.jpg",
+    "audio": "beats/beat6.mp3",
+    "licenses": { "mp3": 30, "wav": 60, "exclusive": 200 }
+  },
+  {
+    "title": "Beat 7",
+    "art": "artwork/beat7.jpg",
+    "audio": "beats/beat7.mp3",
+    "licenses": { "mp3": 30, "wav": 60, "exclusive": 200 }
+  },
+  {
+    "title": "Beat 8",
+    "art": "artwork/beat8.jpg",
+    "audio": "beats/beat8.mp3",
+    "licenses": { "mp3": 30, "wav": 60, "exclusive": 200 }
+  },
+  {
+    "title": "Beat 9",
+    "art": "artwork/beat9.jpg",
+    "audio": "beats/beat9.mp3",
+    "licenses": { "mp3": 30, "wav": 60, "exclusive": 200 }
+  },
+  {
+    "title": "Beat 10",
+    "art": "artwork/beat10.jpg",
+    "audio": "beats/beat10.mp3",
+    "licenses": { "mp3": 30, "wav": 60, "exclusive": 200 }
   }
 ]
