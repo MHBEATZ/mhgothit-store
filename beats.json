@@ -8,15 +8,3 @@
       "wav": 50,
       "exclusive": 300
     }
-  },
-  {
-    "title": "Dark Rage",
-    "art": "artwork/beat2.jpg",
-    "audio": "beats/beat2.mp3",
-    "licenses": {
-      "mp3": 30,
-      "wav": 60,
-      "exclusive": 350
-    }
-  }
-]
