@@ -171,8 +171,30 @@ customers, and placements worldwide.
 
 <section class="section" id="beats">
 <h2>Premium Beats</h2>
-<div class="beat-grid"></div>
-</section>
+fetch("manifest.json")
+  .then(res => res.json())
+  .then(data => {
+    const grid = document.querySelector(".beat-grid");
+    grid.innerHTML = "";
+
+    data.beats.forEach(name => {
+      grid.innerHTML += `
+        <div class="beat-card">
+          <img src="${name}.jpg" style="width:100%;border-radius:12px;margin-bottom:15px">
+          <h3>${name.replace(/-/g," ").toUpperCase()}</h3>
+          <audio controls style="width:100%;margin:10px 0">
+            <source src="${name}.mp3" type="audio/mpeg">
+          </audio>
+          <select>
+            <option>Basic – $29.99</option>
+            <option>Premium – $59.99</option>
+            <option>Unlimited – $99.99</option>
+          </select>
+          <button class="buy">Add to Cart</button>
+        </div>
+      `;
+    });
+  });
 
 <section class="section" id="services">
 <h2>Mix & Master Services</h2>
