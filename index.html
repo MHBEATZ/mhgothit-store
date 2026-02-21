@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -39,6 +40,12 @@ header{
 header img{
   max-width:220px;
   margin-bottom:25px;
+  animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
 }
 
 header h1{
@@ -49,7 +56,8 @@ header h1{
 header p{
   max-width:750px;
   margin:12px auto;
-  opacity:.85;
+  opacity:.9;
+  line-height:1.6;
 }
 
 .stats{
@@ -87,6 +95,12 @@ section{
   padding:15px;
   border-radius:12px;
   box-shadow:0 0 20px black;
+  transition:.3s;
+}
+
+.beat:hover{
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 0 25px rgba(255,100,0,.4);
 }
 
 .beat img{
@@ -112,6 +126,11 @@ button{
   color:white;
   font-weight:bold;
   cursor:pointer;
+}
+
+.removeBtn{
+  background:#222;
+  margin-top:4px;
 }
 
 .service-box{
@@ -157,6 +176,7 @@ button{
   display:none;
 }
 </style>
+
 </head>
 
 <body>
@@ -166,7 +186,13 @@ button{
 <header>
   <img src="artwork/logo.jpg">
   <h1>MH BEATS</h1>
-  <p>Producer & sound architect crafting dark, high-energy beats since <strong>2013</strong>.</p>
+  <p>
+  MH Beats is a passionate music producer and sound designer known for crafting dark,
+  cinematic, and high-energy instrumentals. With over a decade of experience since <strong>2013</strong>,
+  he has worked with artists across multiple genres delivering professional quality beats,
+  mixing, and mastering services. Every production is built with emotion, power, and modern
+  industry standards to help artists stand out and achieve a unique sound.
+  </p>
 
   <div class="stats">
     <div class="stat"><span data-target="2013">0</span><p>Since</p></div>
@@ -183,8 +209,8 @@ button{
 <section>
   <h2>Mix & Master Services</h2>
   <div class="service-box">
-    <p>Industry-ready mixing & mastering.</p>
-    <a href="mailto:mhgothit@gmail.com"><button>Contact for Pricing</button></a>
+    <p>Industry-ready mixing & mastering for vocals and full tracks.</p>
+    <button onclick="window.open('https://paypal.me/mhboss2')">Pay for Service</button>
   </div>
 </section>
 
@@ -223,6 +249,21 @@ for(let i=0;i<120;i++)pts.push({x:Math.random()*w,y:Math.random()*h,z:Math.rando
  });
  requestAnimationFrame(anim);
 })();
+
+/* STATS COUNTER */
+document.querySelectorAll(".stat span").forEach(el=>{
+  let target=parseInt(el.dataset.target);
+  let count=0;
+  let step=Math.ceil(target/100);
+  let interval=setInterval(()=>{
+    count+=step;
+    if(count>=target){
+      count=target;
+      clearInterval(interval);
+    }
+    el.textContent=count;
+  },20);
+});
 
 /* STORE */
 let cart=[], currentWave=null, waves=[];
@@ -274,12 +315,18 @@ function addToCart(b,i){
  renderCart();
 }
 
+function removeFromCart(index){
+ cart.splice(index,1);
+ renderCart();
+}
+
 function renderCart(){
  const ul=document.getElementById("cartItems");
  ul.innerHTML="";
- cart.forEach(x=>{
+ cart.forEach((x,i)=>{
   const li=document.createElement("li");
-  li.textContent=`${x.title} – $${x.price}`;
+  li.innerHTML=`${x.title} – $${x.price}
+  <button class="removeBtn" onclick="removeFromCart(${i})">Remove</button>`;
   ul.appendChild(li);
  });
 }
