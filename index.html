@@ -7,16 +7,13 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-<!-- Add Font Awesome for the PayPal icon -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
 body{background:#0b0b0f;color:white;overflow-x:hidden;}
 html{scroll-behavior:smooth;}
-
 #bg3d{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;}
-
 .nav{
 position:fixed;top:0;width:100%;
 padding:18px 10%;
@@ -29,7 +26,6 @@ z-index:100;
 .nav img{width:60px;}
 .nav a{color:#aaa;margin-left:30px;text-decoration:none;transition:.3s;}
 .nav a:hover{color:#ff3c00;}
-
 .hero{
 min-height:100vh;
 padding:140px 10% 60px;
@@ -45,21 +41,23 @@ background:linear-gradient(#ff3c00,#ff6a00);
 text-shadow:0 0 50px #ff3c00;
 }
 .tagline{margin-top:20px;color:#ff6a00;letter-spacing:2px;}
-.bio{margin-top:25px;max-width:750px;color:#aaa;line-height:1.8;}
-
+.bio{
+margin-top:25px;
+max-width:850px;
+color:#aaa;
+line-height:1.9;
+}
 .section{padding:80px 10%;max-width:1400px;margin:auto;}
 .section h2{
 text-align:center;margin-bottom:50px;font-size:2.2rem;
 background:linear-gradient(#ff3c00,#ff6a00);
 -webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
-
 .beat-grid,.why-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
 gap:30px;
 }
-
 .beat-card,.why-card{
 background:#14141c;padding:30px;
 border-radius:20px;border:1px solid #1f1f2b;
@@ -69,12 +67,10 @@ transition:.4s;
 transform:translateY(-10px);
 box-shadow:0 0 50px rgba(255,60,0,0.3);
 }
-
 select{
 width:100%;padding:12px;margin-top:15px;
 background:#111;color:white;border:1px solid #333;border-radius:8px;
 }
-
 button.buy{
 width:100%;padding:14px;margin-top:15px;
 background:linear-gradient(90deg,#ff3c00,#ff6a00);
@@ -85,14 +81,12 @@ button.buy:hover{
 transform:scale(1.05);
 box-shadow:0 0 20px rgba(255,60,0,0.6);
 }
-
 #overlay{
 position:fixed;top:0;left:0;width:100%;height:100%;
 background:rgba(0,0,0,0.6);
 opacity:0;pointer-events:none;transition:.4s;z-index:250;
 }
 #overlay.active{opacity:1;pointer-events:auto;}
-
 #cart{
 position:fixed;right:0;top:0;
 width:340px;max-width:90%;height:100%;
@@ -102,7 +96,6 @@ transition:.4s;z-index:300;border-left:1px solid #222;
 overflow-y:auto;
 }
 #cart.active{transform:translateX(0);}
-
 #notif{
 position:fixed;
 bottom:30px;
@@ -117,66 +110,30 @@ transition:.4s;
 z-index:999;
 }
 #notif.show{opacity:1;transform:translateY(0);}
-
 .contact-box{
 text-align:center;background:#14141c;padding:40px;
 border-radius:20px;border:1px solid #1f1f2b;
 }
 .contact-box a{color:#ff3c00;font-weight:bold;text-decoration:none;font-size:18px;}
-
 footer{padding:40px;text-align:center;background:#000;color:#555;}
-
-/* PayPal button style */
-.paypal-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 14px;
-    margin-top: 15px;
-    background: linear-gradient(90deg, #ff3c00, #ff6a00);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: .3s;
+.paypal-btn{
+display:flex;align-items:center;justify-content:center;
+width:100%;padding:14px;margin-top:15px;
+background:linear-gradient(90deg,#ff3c00,#ff6a00);
+border:none;border-radius:8px;cursor:pointer;font-weight:bold;
 }
-
-.paypal-btn i {
-    margin-right: 10px; /* Space between icon and text */
-    font-size: 1.2rem;
+.paypal-btn i{margin-right:10px;}
+.remove-btn{
+background:none;border:none;color:#ff3c00;cursor:pointer;
+font-size:0.9rem;margin-left:10px;
 }
-
-.paypal-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(255, 60, 0, 0.6);
-}
-
-.remove-btn {
-    background: none;
-    border: none;
-    color: #ff3c00;
-    cursor: pointer;
-    font-size: 0.9rem;
-    margin-left: 10px;
-    transition: color 0.3s;
-}
-
-.remove-btn:hover {
-    color: #ff6a00;
-}
-
-.fade-out {
-    opacity: 0;
-    transform: translateX(10px);
-    transition: opacity 0.5s, transform 0.5s;
-}
+.fade-out{opacity:0;transform:translateX(10px);transition:.5s;}
 </style>
 </head>
+
 <body>
 
 <div id="bg3d"></div>
-
 <div id="overlay" onclick="toggleCart()"></div>
 
 <div class="nav">
@@ -194,7 +151,7 @@ footer{padding:40px;text-align:center;background:#000;color:#555;}
 <h3>🛒 Cart</h3>
 <div id="cart-items"></div>
 <button class="paypal-btn" onclick="checkout()">
-    <i class="fab fa-paypal"></i> Checkout with PayPal
+<i class="fab fa-paypal"></i> Checkout with PayPal
 </button>
 </div>
 
@@ -203,29 +160,18 @@ footer{padding:40px;text-align:center;background:#000;color:#555;}
 <section class="hero">
 <h1>MH BEATS</h1>
 <p class="tagline">Elite Trap • Drill • Dark Melodic Production</p>
+
 <p class="bio">
-MH Beats is a professional music producer specializing in dark, emotional, and industry-ready sound.
-With years of experience crafting unique melodies and powerful drum patterns, MH Beats focuses on
-creating music that helps artists stand out and dominate their genre.
-From trap and drill to cinematic styles, every beat is carefully designed with modern production techniques.
+Producing seriously since <strong>2013</strong>, MH Beats has delivered
+<strong>500+ beats</strong> through lifetime leases and exclusives,
+working with <strong>200+ artists</strong> across collaborations,
+customers, and placements worldwide.
 </p>
 </section>
 
 <section class="section" id="beats">
 <h2>Premium Beats</h2>
-<div class="beat-grid">
-
-<div class="beat-card">
-<h3>Inferno Trap</h3>
-<select id="license1">
-<option value="29.99">Basic - $29.99</option>
-<option value="59.99">Premium - $59.99</option>
-<option value="99.99">Unlimited - $99.99</option>
-</select>
-<button class="buy" onclick="addToCart('Inferno Trap','license1')">Add to Cart</button>
-</div>
-
-</div>
+<div class="beat-grid"></div>
 </section>
 
 <section class="section" id="services">
@@ -243,10 +189,10 @@ Add to Cart – $79.99
 <section class="section" id="why">
 <h2>Why Choose MH BEATS</h2>
 <div class="why-grid">
-<div class="why-card"><h3>Industry Sound</h3><p>Professional mixing and modern production quality.</p></div>
-<div class="why-card"><h3>Dark Signature Style</h3><p>Cinematic melodies and aggressive 808s.</p></div>
-<div class="why-card"><h3>Fast Delivery</h3><p>Instant beat download & quick turnaround.</p></div>
-<div class="why-card"><h3>Artist Focused</h3><p>Built for serious artists who want elite sound.</p></div>
+<div class="why-card"><h3>Industry Sound</h3><p>Modern, professional-quality production</p></div>
+<div class="why-card"><h3>Dark Signature Style</h3><p>Cinematic melodies & hard drums</p></div>
+<div class="why-card"><h3>Proven Experience</h3><p>10+ years active in music production</p></div>
+<div class="why-card"><h3>Artist Focused</h3><p>Built for serious artists only</p></div>
 </div>
 </section>
 
@@ -261,139 +207,51 @@ Add to Cart – $79.99
 
 <script>
 function toggleCart(){
-    document.getElementById("cart").classList.toggle("active");
-    document.getElementById("overlay").classList.toggle("active");
+document.getElementById("cart").classList.toggle("active");
+document.getElementById("overlay").classList.toggle("active");
 }
 
-/* CART SYSTEM FIX */
-let cart = [];
-
-function addToCart(name, licenseId){
-    const price = parseFloat(document.getElementById(licenseId).value);
-    cart.push({name:name, price:price});
-    updateCart();
-    showNotif(name + " added to cart 🔥");
-}
-
-function addService(name, price){
-    cart.push({name:name, price:price});
-    updateCart();
-    showNotif(name + " added to cart 🔥");
+let cart=[];
+function addService(name,price){
+cart.push({name,price});
+updateCart();
 }
 
 function updateCart(){
-    const cartContainer = document.getElementById("cart-items");
-    cartContainer.innerHTML = "";
-    let total = 0;
-
-    cart.forEach((item, index) => {
-        total += item.price;
-        const div = document.createElement("div");
-        div.style.marginBottom="10px";
-        div.innerHTML = `${item.name} — $${item.price.toFixed(2)} 
-            <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>`;
-        cartContainer.appendChild(div);
-    });
-
-    const totalDiv = document.createElement("div");
-    totalDiv.style.marginTop="20px";
-    totalDiv.style.fontWeight="bold";
-    totalDiv.innerHTML = "Total: $" + total.toFixed(2);
-    cartContainer.appendChild(totalDiv);
-}
-
-function removeFromCart(index) {
-    // Fade out effect before removal
-    const cartContainer = document.getElementById("cart-items");
-    const itemDiv = cartContainer.children[index];
-    
-    // Add fade-out class to animate removal
-    itemDiv.classList.add("fade-out");
-
-    setTimeout(() => {
-        cart.splice(index, 1); // Remove the item from the cart
-        updateCart(); // Re-render the cart
-    }, 500); // Wait for fade-out animation before removal
-}
-
-function showNotif(text) {
-    const notif = document.getElementById("notif");
-    notif.innerText = text;
-    notif.classList.add("show");
-    setTimeout(() => { notif.classList.remove("show"); }, 2000);
+const c=document.getElementById("cart-items");
+c.innerHTML="";
+let t=0;
+cart.forEach((i,x)=>{
+t+=i.price;
+c.innerHTML+=`${i.name} — $${i.price.toFixed(2)}
+<button class="remove-btn" onclick="cart.splice(${x},1);updateCart()">Remove</button><br>`;
+});
+c.innerHTML+=`<strong>Total: $${t.toFixed(2)}</strong>`;
 }
 
 function checkout(){
-    if(cart.length===0){
-        showNotif("Cart is empty");
-        return;
-    }
-    window.open("https://www.paypal.me/mhboss2","_blank");
+window.open("https://www.paypal.me/mhboss2","_blank");
 }
 
-/* INSANE 3D BACKGROUND */
-try{
-    const scene=new THREE.Scene();
-    const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-    const renderer=new THREE.WebGLRenderer({alpha:true,antialias:true});
-    renderer.setSize(window.innerWidth,window.innerHeight);
-    document.getElementById("bg3d").appendChild(renderer.domElement);
-    camera.position.z=6;
+const beats=["pain-type-beat","dark-rage"];
+const grid=document.querySelector(".beat-grid");
 
-    const particlesGeometry=new THREE.BufferGeometry();
-    const count=2000;
-    const positions=new Float32Array(count*3);
-    for(let i=0;i<count*3;i++){positions[i]=(Math.random()-0.5)*30;}
-    particlesGeometry.setAttribute('position',new THREE.BufferAttribute(positions,3));
-
-    const particlesMaterial=new THREE.PointsMaterial({color:0xff3c00,size:0.05});
-    const particles=new THREE.Points(particlesGeometry,particlesMaterial);
-    scene.add(particles);
-
-    const geometry=new THREE.PlaneGeometry(40,40,128,128);
-    const material=new THREE.MeshBasicMaterial({
-        color:0xff3c00,wireframe:true,transparent:true,opacity:0.25
-    });
-    const plane=new THREE.Mesh(geometry,material);
-    plane.rotation.x=-0.7;
-    scene.add(plane);
-
-    let mouseX=0,mouseY=0;
-    document.addEventListener("mousemove",(e)=>{
-        mouseX=(e.clientX/window.innerWidth-0.5)*2;
-        mouseY=(e.clientY/window.innerHeight-0.5)*2;
-    });
-
-    let time=0;
-    function animate(){
-        requestAnimationFrame(animate);
-        time+=0.02;
-
-        const pos=plane.geometry.attributes.position;
-        for(let i=0;i<pos.count;i++){
-            const x=pos.getX(i);
-            const y=pos.getY(i);
-            const wave=Math.sin(x*2+time)+Math.cos(y*2+time);
-            pos.setZ(i,wave*0.6);
-        }
-        pos.needsUpdate=true;
-
-        plane.rotation.z+=0.001;
-        particles.rotation.y+=0.0007;
-
-        camera.position.x=mouseX*2;
-        camera.position.y=-mouseY*2;
-
-        renderer.render(scene,camera);
-    }
-    animate();
-
-    window.addEventListener("resize",()=>{
-        camera.aspect=window.innerWidth/window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth,window.innerHeight);
-    });
-}catch(e){console.log("WebGL fallback",e);}
+beats.forEach(name=>{
+grid.innerHTML+=`
+<div class="beat-card">
+<img src="beats/${name}.jpg" style="width:100%;border-radius:12px;margin-bottom:15px">
+<h3>${name.replace(/-/g," ").toUpperCase()}</h3>
+<audio controls style="width:100%;margin:10px 0">
+<source src="beats/${name}.mp3" type="audio/mpeg">
+</audio>
+<select>
+<option>Basic – $29.99</option>
+<option>Premium – $59.99</option>
+<option>Unlimited – $99.99</option>
+</select>
+<button class="buy" onclick="addService('${name}',29.99)">Add to Cart</button>
+</div>`;
+});
 </script>
 
 </body>
