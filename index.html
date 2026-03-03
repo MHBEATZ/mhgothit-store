@@ -175,6 +175,7 @@ button{
   display:none;
 }
 </style>
+
 </head>
 
 <body>
@@ -209,24 +210,6 @@ MH Beats provides professional music production services for artists seeking hig
 <p>
 Discover the perfect instrumental for your next project. We specialize in creating compelling soundscapes that inspire creativity and resonate with listeners. Whether you need hard-hitting rhythms or atmospheric melodies, our store is the premier destination to buy beats and instrumentals.
 </p>
-
-<h3>Professional Mixing and Mastering Services</h3>
-<p>
-Beyond instrumentals, MH Beats offers expert mixing and mastering to give your final track a polished, professional sound. Our engineer will balance and enhance each element of your song, ensuring it is ready for commercial release across all major platforms. This service is ideal for artists who have recorded their vocals and wish to achieve a superior audio finish.
-</p>
-
-<p><strong>Price: $70 per song.</strong></p>
-
-<p>
-To proceed, please submit payment and send your stems (separate track files) to contact@mhbeats.com. Include your artist name and the song's BPM and key if known.
-</p>
-
-<h3>Contact Information</h3>
-<p>
-For inquiries regarding custom beats, licensing, or our services, please contact us directly. We are committed to providing exceptional customer support.
-</p>
-
-<p><strong>Email:</strong> contact@mhbeats.com</p>
 </section>
 
 <section>
@@ -235,14 +218,21 @@ For inquiries regarding custom beats, licensing, or our services, please contact
 </section>
 
 <section>
-  <h2>Mix & Master Services</h2>
+  <h2>Professional Mixing and Mastering Services</h2>
   <div class="service-box">
-    <p><strong>Price: $70 per song</strong></p>
     <p>
-      After payment, please send your stems (separate track files) to:<br>
-      <strong>contact@mhbeats.com</strong><br><br>
-      Include your artist name and song BPM/key if available.
+    Beyond instrumentals, MH Beats offers expert mixing and mastering to give your final track a polished, professional sound.
+    Our engineer will balance and enhance each element of your song, ensuring it is ready for commercial release across all major platforms.
+    This service is ideal for artists who have recorded their vocals and wish to achieve a superior audio finish.
     </p>
+
+    <p><strong>Price: $70 per song.</strong></p>
+
+    <p>
+    To proceed, please submit payment and send your stems (separate track files) to contact@mhbeats.com.
+    Include your artist name and the song's BPM and key if known.
+    </p>
+
     <button onclick="window.open('https://paypal.me/mhboss2/70')">Pay $70</button>
   </div>
 </section>
@@ -265,7 +255,6 @@ For inquiries regarding custom beats, licensing, or our services, please contact
 <div id="notif"></div>
 
 <script>
-/* BACKGROUND */
 const c=document.getElementById("bg"),ctx=c.getContext("2d");
 let w,h,pts=[];
 function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
@@ -283,7 +272,6 @@ for(let i=0;i<120;i++)pts.push({x:Math.random()*w,y:Math.random()*h,z:Math.rando
  requestAnimationFrame(anim);
 })();
 
-/* STATS COUNTER */
 document.querySelectorAll(".stat span").forEach(el=>{
   let target=parseInt(el.dataset.target);
   let count=0;
@@ -298,7 +286,6 @@ document.querySelectorAll(".stat span").forEach(el=>{
   },20);
 });
 
-/* STORE */
 let cart=[], currentWave=null, waves=[];
 
 fetch("beats.json")
