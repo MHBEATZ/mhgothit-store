@@ -1,201 +1,159 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>MH Beats | Trap & UK Drill Beats For Sale | Buy Dark Instrumentals</title>
-  <meta name="description" content="Discover premium beats for your next project at MH BEATS. Artists can buy beats for their tracks, including high-quality trap beats for sale and UK drill beats..">
-  <meta name="keywords" content="beats for sale, trap beats, uk drill beats, dark trap beat, buy beats online, exclusive beats, instrumental beats">
-  <meta name="author" content="MH Beats">
+<title>MH Beats | Trap & UK Drill Beats For Sale | Buy Dark Instrumentals</title>
+<meta name="description" content="High-quality trap beats, UK drill beats and exclusive instrumentals for artists. Buy beats online from MH BEATS.">
+<meta name="keywords" content="beats for sale, trap beats, uk drill beats, buy beats online, exclusive beats, instrumental beats">
+<meta name="author" content="MH Beats">
 
-  <meta property="og:title" content="MH Beats | Trap & Drill Beats For Sale">
-  <meta property="og:description" content="Dark, cinematic, and hard trap beats. Instant download licenses available.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://mhbeats.com/">
+<link rel="canonical" href="https://mhbeats.com/">
+<script src="https://unpkg.com/wavesurfer.js"></script>
 
-  <link rel="canonical" href="https://mhbeats.com/">
-
-  <script src="https://unpkg.com/wavesurfer.js"></script>
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0WNZD3XGCM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-0WNZD3XGCM');
-  </script>
-
-  <style>
-    :root{
-      --fire:#ff6a00;
-      --red:#b1121a;
-      --bg:#050505;
-      --card:#111;
-      --text:#eaeaea;
-    }
-    *{box-sizing:border-box}
-
-    body{
-      margin:0;
-      font-family:Arial, sans-serif;
-      background:black;
-      color:var(--text);
-      overflow-x:hidden;
-    }
-
-    canvas{
-      position:fixed;
-      inset:0;
-      z-index:-1;
-    }
-
-    header{
-      text-align:center;
-      padding:90px 20px 40px;
-    }
-
-    header img{
-      max-width:220px;
-      margin-bottom:25px;
-      animation:float 4s ease-in-out infinite;
-    }
-
-    @keyframes float{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-10px)}
-    }
-
-    header h1{
-      font-size:3rem;
-      letter-spacing:3px;
-    }
-
-    header p{
-      max-width:750px;
-      margin:12px auto;
-      opacity:.9;
-      line-height:1.6;
-    }
-
-    .stats{
-      display:flex;
-      justify-content:center;
-      gap:40px;
-      margin-top:35px;
-      flex-wrap:wrap;
-    }
-
-    .stat{
-      text-align:center;
-    }
-
-    .stat span{
-      font-size:2.2rem;
-      font-weight:bold;
-      color:var(--fire);
-    }
-
-    section{
-      max-width:1100px;
-      margin:auto;
-      padding:60px 20px;
-    }
-
-    #beats{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:20px;
-    }
-
-    .beat{
-      background:var(--card);
-      padding:15px;
-      border-radius:12px;
-      box-shadow:0 0 20px black;
-      transition:.3s;
-    }
-
-    .beat:hover{
-      transform:translateY(-8px) scale(1.02);
-      box-shadow:0 0 25px rgba(255,100,0,.4);
-    }
-
-    .beat img{
-      width:100%;
-      border-radius:8px;
-    }
-
-    .wave{
-      height:70px;
-      margin:10px 0;
-    }
-
-    select,button{
-      width:100%;
-      padding:10px;
-      margin-top:8px;
-      border:none;
-      border-radius:6px;
-    }
-
-    button{
-      background:linear-gradient(135deg,var(--red),var(--fire));
-      color:white;
-      font-weight:bold;
-      cursor:pointer;
-    }
-
-    .removeBtn{
-      background:#222;
-      margin-top:4px;
-    }
-
-    .service-box{
-      background:var(--card);
-      padding:25px;
-      border-radius:12px;
-      box-shadow:0 0 20px black;
-    }
-
-    #cart{
-      position:fixed;
-      right:-320px;
-      top:0;
-      width:300px;
-      height:100%;
-      background:#0c0c0c;
-      padding:20px;
-      transition:.3s;
-      z-index:10;
-    }
-
-    #cart.active{right:0}
-
-    #cartToggle{
-      position:fixed;
-      right:20px;
-      bottom:20px;
-      background:var(--fire);
-      padding:14px;
-      border-radius:50%;
-      cursor:pointer;
-      font-weight:bold;
-      z-index:11;
-    }
-
-    #notif{
-      position:fixed;
-      top:20px;
-      right:20px;
-      background:var(--fire);
-      padding:12px 18px;
-      border-radius:8px;
-      display:none;
-    }
-  </style>
+<style>
+:root{
+--fire:#ff6a00;
+--red:#b1121a;
+--bg:#050505;
+--card:#111;
+--text:#eaeaea;
+}
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:black;
+color:var(--text);
+overflow-x:hidden;
+}
+canvas{
+position:fixed;
+inset:0;
+z-index:-1;
+}
+header{
+text-align:center;
+padding:90px 20px 40px;
+}
+header img{
+max-width:220px;
+margin-bottom:25px;
+animation:float 4s ease-in-out infinite;
+}
+@keyframes float{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+}
+header h1{
+font-size:3rem;
+letter-spacing:3px;
+}
+header p{
+max-width:750px;
+margin:12px auto;
+opacity:.9;
+line-height:1.6;
+}
+.stats{
+display:flex;
+justify-content:center;
+gap:40px;
+margin-top:35px;
+flex-wrap:wrap;
+}
+.stat{text-align:center;}
+.stat span{
+font-size:2.2rem;
+font-weight:bold;
+color:var(--fire);
+}
+section{
+max-width:1100px;
+margin:auto;
+padding:60px 20px;
+}
+#beats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+.beat{
+background:var(--card);
+padding:15px;
+border-radius:12px;
+box-shadow:0 0 20px black;
+transition:.3s;
+}
+.beat:hover{
+transform:translateY(-8px) scale(1.02);
+box-shadow:0 0 25px rgba(255,100,0,.4);
+}
+.beat img{
+width:100%;
+border-radius:8px;
+}
+.wave{
+height:70px;
+margin:10px 0;
+}
+select,button{
+width:100%;
+padding:10px;
+margin-top:8px;
+border:none;
+border-radius:6px;
+}
+button{
+background:linear-gradient(135deg,var(--red),var(--fire));
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+.removeBtn{
+background:#222;
+margin-top:4px;
+}
+.service-box{
+background:var(--card);
+padding:25px;
+border-radius:12px;
+box-shadow:0 0 20px black;
+}
+#cart{
+position:fixed;
+right:-320px;
+top:0;
+width:300px;
+height:100%;
+background:#0c0c0c;
+padding:20px;
+transition:.3s;
+z-index:10;
+}
+#cart.active{right:0}
+#cartToggle{
+position:fixed;
+right:20px;
+bottom:20px;
+background:var(--fire);
+padding:14px;
+border-radius:50%;
+cursor:pointer;
+font-weight:bold;
+z-index:11;
+}
+#notif{
+position:fixed;
+top:20px;
+right:20px;
+background:var(--fire);
+padding:12px 18px;
+border-radius:8px;
+display:none;
+}
+</style>
 </head>
 
 <body>
@@ -203,173 +161,97 @@
 <canvas id="bg"></canvas>
 
 <header>
-  <img src="artwork/logo.jpg">
-  <h1>MH BEATS</h1>
-  <p>
-  MH Beats is a passionate music producer and sound designer known for crafting dark,
-  cinematic, and high-energy instrumentals. With over a decade of experience since <strong>2013</strong>,
-  he has worked with artists across multiple genres delivering professional quality beats,
-  mixing, and mastering services. Every production is built with emotion, power, and modern
-  industry standards to help artists stand out and achieve a unique sound.
-  </p>
+<img src="artwork/logo.jpg">
+<h1>MH BEATS</h1>
+<p>
+Professional trap & UK drill producer from Meknes, Morocco. Crafting dark,
+cinematic, and high-energy beats since 2013. Premium instrumentals, mixing,
+and mastering services for serious artists.
+</p>
 
-  <div class="stats">
-    <div class="stat"><span data-target="2013">0</span><p>Since</p></div>
-    <div class="stat"><span data-target="150">0</span><p>Artists Worked With</p></div>
-    <div class="stat"><span data-target="500">0</span><p>Beats Sold</p></div>
-  </div>
+<div class="stats">
+<div class="stat"><span data-target="2013">0</span><p>Since</p></div>
+<div class="stat"><span data-target="150">0</span><p>Artists Worked With</p></div>
+<div class="stat"><span data-target="500">0</span><p>Beats Sold</p></div>
+</div>
 </header>
 
 <section>
-  <h2>Beats</h2>
-  <div id="beats"></div>
+<h2>High-Quality Beats for Sale: Trap Beats, UK Drill Beats & Exclusive Instrumentals</h2>
+
+<p>
+MH BEATS provides professional, industry-ready instrumentals for artists who want to elevate their sound.
+Browse a powerful catalog of trap beats for sale, authentic UK drill beats, and exclusive instrumentals crafted for impact.
+</p>
+
+<h3>Trap Beats for Sale</h3>
+<p>
+Hard 808s, dark melodies, and modern energy designed for artists who demand attention.
+</p>
+
+<h3>UK Drill Beats</h3>
+<p>
+Authentic drill patterns, heavy basslines, and atmospheric melodies inspired by the UK scene.
+</p>
+
+<h3>Exclusive Beats</h3>
+<p>
+Secure full ownership of your instrumental. Once sold exclusively, the beat is removed from the store.
+</p>
 </section>
 
 <section>
-  <h2>Mix & Master Services</h2>
-  <div class="service-box">
-    <p><strong>Price: $70 per song</strong></p>
-    <p>
-      After payment, please send your stems (separate track files) to:<br>
-      <strong>mhgothit@gmail.com</strong><br><br>
-      Include your artist name and song BPM/key if available.
-    </p>
-    <button onclick="window.open('https://paypal.me/mhboss2/70')">Pay $70</button>
-  </div>
+<h2>Beats</h2>
+<div id="beats"></div>
 </section>
 
 <section>
-  <h2>Contact Me</h2>
-  <div class="service-box">
-    <p><strong>Email:</strong> mhgothit@gmail.com</p>
-    <a href="mailto:mhgothit@gmail.com"><button>Send Email</button></a>
-  </div>
+<h2>Mix & Master Services</h2>
+<div class="service-box">
+<p><strong>Price: $70 per song</strong></p>
+<p>
+After payment, send your stems to:<br>
+<strong>contact@mhbeats.com</strong><br><br>
+Include your artist name and song BPM/key if available.
+</p>
+<button onclick="window.open('https://paypal.me/mhboss2/70')">Pay $70</button>
+</div>
+</section>
+
+<section>
+<h2>Contact Me</h2>
+<div class="service-box">
+<p><strong>Email:</strong> contact@mhbeats.com</p>
+<a href="mailto:contact@mhbeats.com"><button>Send Email</button></a>
+</div>
 </section>
 
 <div id="cart">
-  <h2>🛒 Cart</h2>
-  <ul id="cartItems"></ul>
-  <button onclick="checkout()">Pay with PayPal</button>
+<h2>🛒 Cart</h2>
+<ul id="cartItems"></ul>
+<button onclick="checkout()">Pay with PayPal</button>
 </div>
 
 <div id="cartToggle" onclick="toggleCart()">🛒</div>
 <div id="notif"></div>
 
 <script>
-/* BACKGROUND */
 const c=document.getElementById("bg"),ctx=c.getContext("2d");
 let w,h,pts=[];
 function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
 window.onresize=resize;resize();
 for(let i=0;i<120;i++)pts.push({x:Math.random()*w,y:Math.random()*h,z:Math.random()*2+.5,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25});
 (function anim(){
- ctx.clearRect(0,0,w,h);
- pts.forEach(p=>{
-  p.x+=p.vx;p.y+=p.vy;
-  if(p.x<0||p.x>w)p.vx*=-1;
-  if(p.y<0||p.y>h)p.vy*=-1;
-  ctx.fillStyle=`rgba(255,100,0,${p.z})`;
-  ctx.beginPath();ctx.arc(p.x,p.y,2*p.z,0,Math.PI*2);ctx.fill();
- });
- requestAnimationFrame(anim);
+ctx.clearRect(0,0,w,h);
+pts.forEach(p=>{
+p.x+=p.vx;p.y+=p.vy;
+if(p.x<0||p.x>w)p.vx*=-1;
+if(p.y<0||p.y>h)p.vy*=-1;
+ctx.fillStyle=`rgba(255,100,0,${p.z})`;
+ctx.beginPath();ctx.arc(p.x,p.y,2*p.z,0,Math.PI*2);ctx.fill();
+});
+requestAnimationFrame(anim);
 })();
-
-/* STATS COUNTER */
-document.querySelectorAll(".stat span").forEach(el=>{
-  let target=parseInt(el.dataset.target);
-  let count=0;
-  let step=Math.ceil(target/100);
-  let interval=setInterval(()=>{
-    count+=step;
-    if(count>=target){
-      count=target;
-      clearInterval(interval);
-    }
-    el.textContent=count;
-  },20);
-});
-
-/* STORE */
-let cart=[], currentWave=null, waves=[];
-
-fetch("beats.json")
-.then(r=>r.json())
-.then(beats=>{
- const cont=document.getElementById("beats");
- beats.forEach((b,i)=>{
-  const d=document.createElement("div");
-  d.className="beat";
-  d.innerHTML=`
-    <img src="${b.art}">
-    <h3>${b.title}</h3>
-    <div class="wave" id="wave${i}"></div>
-    <button onclick="play(${i})">▶ Play</button>
-    <select id="lic${i}">
-      <option value="mp3">MP3 – $${b.licenses.mp3}</option>
-      <option value="wav">WAV – $${b.licenses.wav}</option>
-      <option value="exclusive">Exclusive – $${b.licenses.exclusive}</option>
-    </select>
-    <button onclick='addToCart(${JSON.stringify(b)},${i})'>Add to Cart</button>
-  `;
-  cont.appendChild(d);
-
-  b.wave = WaveSurfer.create({
-    container:"#wave"+i,
-    waveColor:"#333",
-    progressColor:"#ff6a00",
-    height:60,
-    barWidth:2
-  });
-
-  waves[i] = b.wave;
-  b.wave.load(b.audio);
- });
-});
-
-function play(i){
-  if(currentWave && currentWave !== waves[i]) currentWave.pause();
-  currentWave = waves[i];
-  currentWave.playPause();
-}
-
-function addToCart(b,i){
- const lic=document.getElementById("lic"+i).value;
- cart.push({title:`${b.title} (${lic})`,price:b.licenses[lic]});
- notify("Added to cart");
- renderCart();
-}
-
-function removeFromCart(index){
- cart.splice(index,1);
- renderCart();
-}
-
-function renderCart(){
- const ul=document.getElementById("cartItems");
- ul.innerHTML="";
- cart.forEach((x,i)=>{
-  const li=document.createElement("li");
-  li.innerHTML=`${x.title} – $${x.price}
-  <button class="removeBtn" onclick="removeFromCart(${i})">Remove</button>`;
-  ul.appendChild(li);
- });
-}
-
-function checkout(){
- const total=cart.reduce((s,b)=>s+b.price,0);
- if(total>0) window.open("https://paypal.me/mhboss2/"+total);
-}
-
-function toggleCart(){
- document.getElementById("cart").classList.toggle("active");
-}
-
-function notify(t){
- const n=document.getElementById("notif");
- n.textContent=t;
- n.style.display="block";
- setTimeout(()=>n.style.display="none",2000);
-}
 </script>
 
 </body>
