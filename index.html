@@ -2,181 +2,191 @@
 
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>MH Beats</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script src="https://unpkg.com/wavesurfer.js"></script>
+  <title>MH Beats | Trap & UK Drill Beats For Sale | Buy Dark Instrumentals</title>
+  <meta name="description" content="Buy high quality trap, UK drill, dark and ethnic beats. Producer since 2013. Instant license download. Exclusive and MP3/WAV beats available.">
+  <meta name="keywords" content="beats for sale, trap beats, uk drill beats, dark trap beat, buy beats online, exclusive beats, instrumental beats">
+  <meta name="author" content="MH Beats">
 
-<style>
-:root{
-  --fire:#ff6a00;
-  --red:#b1121a;
-  --bg:#050505;
-  --card:#111;
-  --text:#eaeaea;
-}
-*{box-sizing:border-box}
+  <meta property="og:title" content="MH Beats | Trap & Drill Beats For Sale">
+  <meta property="og:description" content="Dark, cinematic, and hard trap beats. Instant download licenses available.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mhbeats.com/">
 
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:black;
-  color:var(--text);
-  overflow-x:hidden;
-}
+  <link rel="canonical" href="https://mhbeats.com/">
 
-canvas{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-}
+  <script src="https://unpkg.com/wavesurfer.js"></script>
 
-header{
-  text-align:center;
-  padding:90px 20px 40px;
-}
+  <style>
+    :root{
+      --fire:#ff6a00;
+      --red:#b1121a;
+      --bg:#050505;
+      --card:#111;
+      --text:#eaeaea;
+    }
+    *{box-sizing:border-box}
 
-header img{
-  max-width:220px;
-  margin-bottom:25px;
-  animation:float 4s ease-in-out infinite;
-}
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:black;
+      color:var(--text);
+      overflow-x:hidden;
+    }
 
-@keyframes float{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-10px)}
-}
+    canvas{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+    }
 
-header h1{
-  font-size:3rem;
-  letter-spacing:3px;
-}
+    header{
+      text-align:center;
+      padding:90px 20px 40px;
+    }
 
-header p{
-  max-width:750px;
-  margin:12px auto;
-  opacity:.9;
-  line-height:1.6;
-}
+    header img{
+      max-width:220px;
+      margin-bottom:25px;
+      animation:float 4s ease-in-out infinite;
+    }
 
-.stats{
-  display:flex;
-  justify-content:center;
-  gap:40px;
-  margin-top:35px;
-  flex-wrap:wrap;
-}
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
+    }
 
-.stat{
-  text-align:center;
-}
+    header h1{
+      font-size:3rem;
+      letter-spacing:3px;
+    }
 
-.stat span{
-  font-size:2.2rem;
-  font-weight:bold;
-  color:var(--fire);
-}
+    header p{
+      max-width:750px;
+      margin:12px auto;
+      opacity:.9;
+      line-height:1.6;
+    }
 
-section{
-  max-width:1100px;
-  margin:auto;
-  padding:60px 20px;
-}
+    .stats{
+      display:flex;
+      justify-content:center;
+      gap:40px;
+      margin-top:35px;
+      flex-wrap:wrap;
+    }
 
-#beats{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
-}
+    .stat{
+      text-align:center;
+    }
 
-.beat{
-  background:var(--card);
-  padding:15px;
-  border-radius:12px;
-  box-shadow:0 0 20px black;
-  transition:.3s;
-}
+    .stat span{
+      font-size:2.2rem;
+      font-weight:bold;
+      color:var(--fire);
+    }
 
-.beat:hover{
-  transform:translateY(-8px) scale(1.02);
-  box-shadow:0 0 25px rgba(255,100,0,.4);
-}
+    section{
+      max-width:1100px;
+      margin:auto;
+      padding:60px 20px;
+    }
 
-.beat img{
-  width:100%;
-  border-radius:8px;
-}
+    #beats{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:20px;
+    }
 
-.wave{
-  height:70px;
-  margin:10px 0;
-}
+    .beat{
+      background:var(--card);
+      padding:15px;
+      border-radius:12px;
+      box-shadow:0 0 20px black;
+      transition:.3s;
+    }
 
-select,button{
-  width:100%;
-  padding:10px;
-  margin-top:8px;
-  border:none;
-  border-radius:6px;
-}
+    .beat:hover{
+      transform:translateY(-8px) scale(1.02);
+      box-shadow:0 0 25px rgba(255,100,0,.4);
+    }
 
-button{
-  background:linear-gradient(135deg,var(--red),var(--fire));
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-}
+    .beat img{
+      width:100%;
+      border-radius:8px;
+    }
 
-.removeBtn{
-  background:#222;
-  margin-top:4px;
-}
+    .wave{
+      height:70px;
+      margin:10px 0;
+    }
 
-.service-box{
-  background:var(--card);
-  padding:25px;
-  border-radius:12px;
-  box-shadow:0 0 20px black;
-}
+    select,button{
+      width:100%;
+      padding:10px;
+      margin-top:8px;
+      border:none;
+      border-radius:6px;
+    }
 
-#cart{
-  position:fixed;
-  right:-320px;
-  top:0;
-  width:300px;
-  height:100%;
-  background:#0c0c0c;
-  padding:20px;
-  transition:.3s;
-  z-index:10;
-}
+    button{
+      background:linear-gradient(135deg,var(--red),var(--fire));
+      color:white;
+      font-weight:bold;
+      cursor:pointer;
+    }
 
-#cart.active{right:0}
+    .removeBtn{
+      background:#222;
+      margin-top:4px;
+    }
 
-#cartToggle{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  background:var(--fire);
-  padding:14px;
-  border-radius:50%;
-  cursor:pointer;
-  font-weight:bold;
-  z-index:11;
-}
+    .service-box{
+      background:var(--card);
+      padding:25px;
+      border-radius:12px;
+      box-shadow:0 0 20px black;
+    }
 
-#notif{
-  position:fixed;
-  top:20px;
-  right:20px;
-  background:var(--fire);
-  padding:12px 18px;
-  border-radius:8px;
-  display:none;
-}
-</style>
+    #cart{
+      position:fixed;
+      right:-320px;
+      top:0;
+      width:300px;
+      height:100%;
+      background:#0c0c0c;
+      padding:20px;
+      transition:.3s;
+      z-index:10;
+    }
 
+    #cart.active{right:0}
+
+    #cartToggle{
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      background:var(--fire);
+      padding:14px;
+      border-radius:50%;
+      cursor:pointer;
+      font-weight:bold;
+      z-index:11;
+    }
+
+    #notif{
+      position:fixed;
+      top:20px;
+      right:20px;
+      background:var(--fire);
+      padding:12px 18px;
+      border-radius:8px;
+      display:none;
+    }
+  </style>
 </head>
 
 <body>
