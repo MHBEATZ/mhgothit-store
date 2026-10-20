@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MH BEATS — Chrome-cut instrumentals</title>
+<meta name="description" content="MH BEATS: original trap, drill, dark and cinematic instrumentals, mixing, mastering and custom production.">
+<meta property="og:title" content="MH BEATS — Chrome-cut instrumentals"><meta property="og:image" content="assets/art/pain.jpg">
+<link rel="icon" href="assets/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Familjen+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head><body class="load">
+<div id="intro"><img src="assets/logo.webp" alt="MH"><b>LOADING</b></div><div class="bar2 t"></div><div class="bar2 u"></div>
+<canvas id="gl" aria-hidden="true"></canvas><div id="cur"></div>
+<nav><div class="wrap"><a class="brand" href="#">MHBEATS</a><div class="links"><a href="#store">Beats</a><a href="#services">Services</a><a href="#contact">Contact</a><button class="cartbtn" id="cartbtn">Cart <span id="cc">0</span></button></div></div></nav>
+<main>
+<div class="hero" id="hero"><img class="fallback-logo" src="assets/logo.webp" alt="MH BEATS logo"><div class="since" aria-hidden="true">2013</div><div class="wrap"><h1>MHBEATS</h1><p>Producing since 2013. Original trap, drill, dark and cinematic instrumentals, built for artists who don’t want to sound like everybody else.</p><div class="row"><a class="btn hot" href="#store">Browse beats</a><a class="btn" href="#services">Work with MH</a></div></div><i class="cue"></i></div>
+<div class="stats" id="stats"><div><strong data-t="2013">0</strong>In the booth since</div><div><strong id="yrs" data-t="13">0</strong>Years making beats</div><div><strong data-t="150" data-s="+">0</strong>Artists worked with</div><div><strong data-t="500" data-s="+">0</strong>Beats sold</div></div>
+<div class="yr" id="yr"><div class="pin"><div id="yn">2013</div><p id="yc">Day one.</p></div></div>
+
+<section id="store" class="vault">
+ <div class="vault-top"><h2>Find your sound</h2><p class="sub">Drag or tap to spin through the vault. Press play, pick a license, add it to your cart.</p></div>
+ <img class="fbart" id="fbart" alt="">
+ <button class="arrow l" id="prev" aria-label="Previous beat">‹</button><button class="arrow r" id="next" aria-label="Next beat">›</button>
+ <div class="drag">DRAG · SWIPE · ARROW KEYS</div>
+ <div id="vault-empty"><p>New beats are on the way.</p></div>
+ <div class="vault-ui" id="vault-ui"><div class="vbar" id="vbar" title="Seek"><i></i></div><span class="count" id="spc"></span><b id="spt"></b><div class="metaline" id="spm"></div>
+  <div class="sp"><select id="spl" aria-label="License"></select><button class="btn" id="spp">Play</button><button class="btn hot" id="spa">Add to cart</button></div></div>
+</section>
+
+<div id="rest">
+<section id="all"><div class="wrap"><p class="sub2">All beats</p><div id="beats"></div></div></section>
+<section id="services" style="padding-top:20px"><div class="wrap"><h2>More than beats</h2><p class="sub">MH can take the whole record from idea to finished master.</p>
+<div class="svc"><div class="card"><h3>Mix and master</h3><p>Clean, heavy mixes that translate on headphones, in cars and on streaming platforms.</p><b>$70</b> per song</div>
+<div class="card"><h3>Custom production</h3><p>An instrumental built around your voice, flow and references.</p><b>Custom quote</b></div>
+<div class="card"><h3>Exclusives</h3><p>Buy exclusive rights to a beat and make it yours alone.</p>from <b>$75</b></div></div></div></section>
+<section id="contact" class="cta"><div class="wrap"><h2>You bring the vision. MH builds the sound.</h2><p class="sub">Custom work, mixing, mastering or beat questions: email MH directly.</p><a class="btn hot" data-mail href="mailto:contact@mhbeats.com">Email MH</a></div></section>
+</div>
+</main>
+<footer><div class="wrap"><span>© 2026 MH BEATS</span><span>Production · Mixing · Mastering</span><span><a href="admin.html" style="opacity:.35">Admin</a></span></div></footer>
+
+<aside id="cart"><header><h2 style="font-size:20px;margin:0">Your cart</h2><button class="x" id="cartx" aria-label="Close cart">×</button></header><ul id="items"></ul><div class="tot"><span>Total</span><span>$<span id="total">0</span></span></div><button class="btn hot" id="pay">Pay with PayPal</button></aside>
+<div id="np"><img id="npi" alt=""><div><b id="npt"></b><div class="npb"><i id="npp"></i></div></div><button id="npb" aria-label="Play or pause">❚❚</button></div>
+<div id="tc" aria-hidden="true"></div><div id="toast"></div>
+<script src="config.js"></script>
+<script src="beats-seed.js"></script>
+<script src="assets/app.js"></script>
+</body></html>
